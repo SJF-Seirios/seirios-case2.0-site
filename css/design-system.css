@@ -363,15 +363,14 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 .terminal-title { font-size: 0.7rem; color: var(--text-muted); margin-left: 6px; letter-spacing: 0.04em; }
 
 .terminal-body { padding: 18px 22px; font-size: 0.78rem; line-height: 1.7; }
-.t-pass  { color: #1D9E75; }
-.t-fail  { color: #C0392B; }
-.t-warn  { color: #BA7517; }
-.t-info  { color: var(--cyan); }
-.t-cmd   { color: var(--text-primary); }
-.t-dim   { color: var(--text-muted); }
-[data-theme="dark"] .t-pass { color: #00ff88; }
-[data-theme="dark"] .t-fail { color: #ff4466; }
-[data-theme="dark"] .t-warn { color: #ffaa00; }
+
+/* Terminal always sits on a dark background — hardcode light text for both themes */
+.t-cmd   { color: #e8edf4; }
+.t-dim   { color: #5a6a7e; }
+.t-pass  { color: #3ecf8e; }
+.t-fail  { color: #ff6b6b; }
+.t-warn  { color: #f5a623; }
+.t-info  { color: #5bc8e8; }
 
 /* ── Analogy block (light) ── */
 .analogy {
