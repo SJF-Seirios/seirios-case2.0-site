@@ -269,24 +269,16 @@
       <ul class="nav-links">
         <li><a href="../index.html#platform">Platform</a></li>
         <li class="nav-dropdown">
-          <button class="nav-dropdown-trigger">
-            Solutions <span class="nav-dropdown-arrow">▼</span>
-          </button>
+          <button class="nav-dropdown-trigger">Solutions <span class="nav-dropdown-arrow">▼</span></button>
           <div class="nav-dropdown-menu">
             <a class="nav-dropdown-item" href="regulations.html">
               <span class="nav-dropdown-item-icon">📋</span>
-              <span class="nav-dropdown-item-text">
-                <strong>Regulations &amp; Frameworks</strong>
-                <span>26 safety &amp; compliance profiles</span>
-              </span>
+              <span class="nav-dropdown-item-text"><strong>Regulations &amp; Frameworks</strong><span>26 safety &amp; compliance profiles</span></span>
             </a>
             <div class="nav-dropdown-divider"></div>
             <a class="nav-dropdown-item" href="ai-agent-security.html">
               <span class="nav-dropdown-item-icon">🤖</span>
-              <span class="nav-dropdown-item-text">
-                <strong>AI Agent Security</strong>
-                <span>Formally bounded agent deployments</span>
-              </span>
+              <span class="nav-dropdown-item-text"><strong>AI Agent Security</strong><span>Formally bounded agent deployments</span></span>
             </a>
           </div>
         </li>
@@ -303,16 +295,33 @@
           <span class="theme-toggle-label">Dark</span>
         </button>
       </div>
-
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
-
-  <!-- Mobile nav drawer -->
   <div class="nav-mobile" id="nav-mobile">
     <a href="../index.html#platform">Platform</a>
     <div class="nav-mobile-group">Solutions</div>
     <a href="regulations.html" class="nav-mobile-sub">📋 Regulations &amp; Frameworks</a>
+    <a href="ai-agent-security.html" class="nav-mobile-sub">🤖 AI Agent Security</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="../for-ciso.html">For CISOs &amp; DPOs</a>
+    <a href="../for-devops.html">For DevSecOps</a>
+    <a href="about.html">About</a>
+    <a href="../index.html#pricing">Pricing</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="request-demo.html" style="color:var(--cyan);font-weight:600;">Request Demo →</a>
+    <div style="padding:8px 24px 12px;">
+      <button class="theme-toggle" style="width:auto;">
+        <span class="theme-toggle-icon">🌙</span>
+        <span class="theme-toggle-label">Dark mode</span>
+      </button>
+    </div>
+  </div>
+
+  <a href="regulations.html" class="nav-mobile-sub">📋 Regulations &amp; Frameworks</a>
     <a href="ai-agent-security.html" class="nav-mobile-sub">🤖 AI Agent Security</a>
     <div class="nav-mobile-divider"></div>
     <a href="../for-ciso.html">For CISOs &amp; DPOs</a>
@@ -1707,14 +1716,29 @@
         if (!h.contains(e.target) && !m.contains(e.target)) {
           h.classList.remove('open');
           m.classList.remove('open');
-          h.setAttribute('aria-expanded', 'false');
+          h.setAttribu
+
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = h.classList.toggle('open');
+        m.classList.toggle('open', isOpen);
+        h.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function(e) {
+        if (!h.contains(e.target) && !m.contains(e.target)) {
+          h.classList.remove('open');
+          m.classList.remove('open');
         }
       });
       m.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', function() {
           h.classList.remove('open');
           m.classList.remove('open');
-          h.setAttribute('aria-expanded', 'false');
         });
       });
     })();

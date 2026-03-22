@@ -142,24 +142,16 @@
       <ul class="nav-links">
         <li><a href="../index.html#platform">Platform</a></li>
         <li class="nav-dropdown">
-          <button class="nav-dropdown-trigger">
-            Solutions <span class="nav-dropdown-arrow">▼</span>
-          </button>
+          <button class="nav-dropdown-trigger">Solutions <span class="nav-dropdown-arrow">▼</span></button>
           <div class="nav-dropdown-menu">
             <a class="nav-dropdown-item" href="regulations.html">
               <span class="nav-dropdown-item-icon">📋</span>
-              <span class="nav-dropdown-item-text">
-                <strong>Regulations &amp; Frameworks</strong>
-                <span>26 safety &amp; compliance profiles</span>
-              </span>
+              <span class="nav-dropdown-item-text"><strong>Regulations &amp; Frameworks</strong><span>26 safety &amp; compliance profiles</span></span>
             </a>
             <div class="nav-dropdown-divider"></div>
             <a class="nav-dropdown-item" href="ai-agent-security.html">
               <span class="nav-dropdown-item-icon">🤖</span>
-              <span class="nav-dropdown-item-text">
-                <strong>AI Agent Security</strong>
-                <span>Formally bounded agent deployments</span>
-              </span>
+              <span class="nav-dropdown-item-text"><strong>AI Agent Security</strong><span>Formally bounded agent deployments</span></span>
             </a>
           </div>
         </li>
@@ -176,16 +168,33 @@
           <span class="theme-toggle-label">Dark</span>
         </button>
       </div>
-
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
-
-  <!-- Mobile nav drawer -->
   <div class="nav-mobile" id="nav-mobile">
     <a href="../index.html#platform">Platform</a>
     <div class="nav-mobile-group">Solutions</div>
     <a href="regulations.html" class="nav-mobile-sub">📋 Regulations &amp; Frameworks</a>
+    <a href="ai-agent-security.html" class="nav-mobile-sub">🤖 AI Agent Security</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="../for-ciso.html">For CISOs &amp; DPOs</a>
+    <a href="../for-devops.html">For DevSecOps</a>
+    <a href="about.html">About</a>
+    <a href="../index.html#pricing">Pricing</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="request-demo.html" style="color:var(--cyan);font-weight:600;">Request Demo →</a>
+    <div style="padding:8px 24px 12px;">
+      <button class="theme-toggle" style="width:auto;">
+        <span class="theme-toggle-icon">🌙</span>
+        <span class="theme-toggle-label">Dark mode</span>
+      </button>
+    </div>
+  </div>
+
+  <a href="regulations.html" class="nav-mobile-sub">📋 Regulations &amp; Frameworks</a>
     <a href="ai-agent-security.html" class="nav-mobile-sub">🤖 AI Agent Security</a>
     <div class="nav-mobile-divider"></div>
     <a href="../for-ciso.html">For CISOs &amp; DPOs</a>
@@ -253,7 +262,7 @@
                 Email demo request →
               </a>
               <p style="font-size:0.72rem; color:var(--text-muted); margin-top:12px; font-family:var(--font-mono);">
-                <a href="mailto:contact@threadledger.io">contact@threadledger.io</a>
+                <a href="mailto:contact@threadledger.io"><span class="__cf_email__" data-cfemail="076468697366647347736f756266636b6263606275296e68">[email&#160;protected]</span></a>
               </p>
             </div>
             <!-- Uncomment and fill in once you have a Tally URL:
@@ -352,7 +361,7 @@
       </div>
       <div class="faq-item" style="border-bottom:none;">
         <div class="faq-q">What if I just want to discuss our compliance situation first?</div>
-        <div class="faq-a">That's fine too — email us at <a href="mailto:contact@threadledger.io">contact@threadledger.io</a> with a brief description of your use case and we'll have a plain conversation before scheduling anything formal.</div>
+        <div class="faq-a">That's fine too — email us at <a href="mailto:contact@threadledger.io"><span class="__cf_email__" data-cfemail="abc8c4c5dfcac8dfebdfc3d9cecacfc7cecfccced985c2c4">[email&#160;protected]</span></a> with a brief description of your use case and we'll have a plain conversation before scheduling anything formal.</div>
       </div>
     </div>
   </section>
@@ -419,17 +428,29 @@
         h.setAttribute('aria-expanded', String(open));
       });
       document.addEventListener('click', function(e) {
+        if (!h.contains(e.ta
+
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = h.classList.toggle('open');
+        m.classList.toggle('open', isOpen);
+        h.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function(e) {
         if (!h.contains(e.target) && !m.contains(e.target)) {
           h.classList.remove('open');
           m.classList.remove('open');
-          h.setAttribute('aria-expanded', 'false');
         }
       });
       m.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', function() {
           h.classList.remove('open');
           m.classList.remove('open');
-          h.setAttribute('aria-expanded', 'false');
         });
       });
     })();

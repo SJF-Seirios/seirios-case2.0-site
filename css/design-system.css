@@ -473,11 +473,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .section   { padding: 60px 0; }
-  .stat-grid { grid-template-columns: repeat(2, 1fr); }
-}
+
 
 /* ── Hamburger / mobile nav ── */
 .nav-hamburger {
@@ -533,12 +529,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   pointer-events: all;
 }
 
-@media (max-width: 768px) {
-  /* Show drawer container (hidden by default, shown when .open) */
-  .nav-mobile {
-    display: block;
-  }
-}
+
 .nav-mobile a, .nav-mobile button.nav-mobile-trigger {
   display: block; width: 100%;
   padding: 11px 24px;
@@ -573,7 +564,10 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 }
 
 @media (max-width: 768px) {
-  .nav-hamburger { display: flex; }
-  .nav-links { display: none !important; }
-  .nav-right { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+  .nav-links     { display: none !important; }
+  .nav-right     { display: none !important; }
+  .nav-mobile    { display: block; }
+  .section       { padding: 60px 0; }
+  .stat-grid     { grid-template-columns: repeat(2, 1fr); }
 }
