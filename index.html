@@ -233,8 +233,27 @@
           <span class="theme-toggle-label">Dark</span>
         </button>
       </div>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
     </div>
   </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html#platform">Platform</a>
+    <div class="nav-mobile-group">Solutions</div>
+    <a href="pages/regulations.html" class="nav-mobile-sub">Regulations & Frameworks</a>
+    <a href="pages/ai-agent-security.html" class="nav-mobile-sub">AI Agent Security</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="for-ciso.html">For CISOs & DPOs</a>
+    <a href="for-devops.html">For DevSecOps</a>
+    <a href="pages/about.html">About</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="pages/request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
+  </div>
 
   <!-- ── Hero ── -->
   <section class="hero">
@@ -591,36 +610,57 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;margin-bottom:32px;">
-        <div>
-          <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;">
-            <div class="nav-logo-mark">TL</div>
-            <span style="font-family:var(--font-mono);font-weight:600;font-size:0.9rem;">Threadledger</span>
-          </div>
-          <p style="font-size:0.8125rem;color:var(--text-muted);max-width:280px;line-height:1.6;">Formal verification infrastructure for AI compliance. Provable. Automatic. Continuous.</p>
-          <div style="display:flex;gap:7px;margin-top:14px;flex-wrap:wrap;">
-            <span class="badge badge-cyan">EU AI Act</span>
-            <span class="badge badge-green">GDPR</span>
-            <span class="badge badge-amber">NIST AI RMF</span>
-          </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+        <div style="display:flex; align-items:center; gap:9px;">
+          <div class="nav-logo-mark">TL</div>
+          <span style="font-family:var(--font-mono); font-weight:600;">Threadledger</span>
+          <span style="color:var(--text-muted); font-size:0.78rem; font-family:var(--font-mono);">· ThreatLedger B.V. · Amsterdam · Dutch law</span>
         </div>
-        <div style="display:flex;gap:40px;">
-          <div>
-            <div style="font-family:var(--font-mono);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:10px;">Platform</div>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;">
-              <li><a href="#platform" style="color:var(--text-secondary);text-decoration:none;font-size:0.8125rem;">How It Works</a></li>
-              <li><a href="#pricing" style="color:var(--text-secondary);text-decoration:none;font-size:0.8125rem;">Pricing</a></li>
-              <li><a href="#demos" style="color:var(--text-secondary);text-decoration:none;font-size:0.8125rem;">Demos</a></li>
-            </ul>
-          </div>
-          <div>
-            <div style="font-family:var(--font-mono);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:10px;">Teams</div>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;">
-              <li><a href="for-ciso.html" style="color:var(--text-secondary);text-decoration:none;font-size:0.8125rem;">CISOs &amp; DPOs</a></li>
-              <li><a href="for-devops.html" style="color:var(--text-secondary);text-decoration:none;font-size:0.8125rem;">DevSecOps</a></li>
-              <li><a href="/cdn-cgi/l/email-protection#6a0905041e0b091e2a1e02180f0b0e060f0e0d0f18440305" style="color:var(--text-secondary);text-decoration:none;font-size:0.8125rem;">Contact</a></li>
-            </ul>
-          </div>
+        <div style="display:flex; gap:18px; flex-wrap:wrap;">
+          <a href="pages/regulations.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Regulations</a>
+          <a href="pages/ai-agent-security.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Agent Security</a>
+          <a href="for-ciso.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">For CISOs &amp; DPOs</a>
+          <a href="for-devops.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">For DevSecOps</a>
+          <a href="pages/request-demo.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Request Demo</a>
+          <a href="mailto:contact@threadledger.io" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">contact@threadledger.io</a>
         </div>
       </div>
-      <div 
+      <div style="height:0.5px; background:var(--border-dim); margin:20px 0 16px;"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 ThreatLedger B.V. · Amsterdam · Dutch law</span>
+        <div style="display:flex; gap:7px; flex-wrap:wrap;">
+          <span class="badge badge-cyan">EU AI Act</span>
+          <span class="badge badge-green">GDPR</span>
+          <span class="badge badge-amber">NIST AI RMF</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile nav JS -->
+  <script>
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('nav-mobile');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open);
+      });
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+        }
+      });
+      mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
