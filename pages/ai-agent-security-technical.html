@@ -130,6 +130,26 @@
     }
     :root .threat-fix { color: var(--green); }
 
+    /* ── OCL code block ── */
+    .ocl-block {
+      background: var(--bg-deep);
+      border: 0.5px solid var(--border-subtle);
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 20px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.75;
+      overflow-x: auto;
+      margin-top: 24px;
+    }
+    :root .ocl-block { border-left-color: var(--green); }
+    .ocl-comment { color: var(--text-muted); font-style: italic; }
+    .ocl-keyword { color: var(--cyan); }
+    :root .ocl-keyword { color: var(--green); }
+    .ocl-type    { color: var(--amber); }
+    .ocl-value   { color: #e8a87c; }
+
     /* ── Before/after ── */
     .ba-grid {
       display: grid;
@@ -270,25 +290,25 @@
           <div class="threat-label">Failure 1</div>
           <h3>Credential exposure</h3>
           <p>API keys, secrets, and tokens hardcoded in agent configs or accessible via environment variables without access controls. An agent that can read <code style="font-family:var(--font-mono); font-size:0.75rem; background:var(--bg-raised); padding:1px 5px; border-radius:3px;">.env</code> can exfiltrate everything in it.</p>
-          <div class="threat-fix">→ L0 credential classification + L1 the credential access control</div>
+          <div class="threat-fix">→ L0 credential classification + L1 CredentialAccessGuard</div>
         </div>
         <div class="threat-card">
           <div class="threat-label">Failure 2</div>
           <h3>Prompt injection</h3>
           <p>Malicious instructions embedded in content the agent processes — a document, a webpage, an email, a tool response. The agent acts on the injected instruction believing it came from the user or orchestrator.</p>
-          <div class="threat-fix">→ L1 the input sanitisation control + L3 bypass detection</div>
+          <div class="threat-fix">→ L1 InputSanitisationGuard + L3 bypass detection</div>
         </div>
         <div class="threat-card">
           <div class="threat-label">Failure 3</div>
           <h3>Excessive agency</h3>
           <p>Agents with broader file, network, or API access than they need. An agent given full cloud access to "help with infrastructure" can — and will — do things no one intended. Including cutting your cloud bill from $2,000 to $150 by deleting services.</p>
-          <div class="threat-fix">→ L0 scope invariants + L1 the scope control</div>
+          <div class="threat-fix">→ L0 scope invariants + L1 AgentScopeGuard</div>
         </div>
         <div class="threat-card">
           <div class="threat-label">Failure 4</div>
           <h3>No audit trail</h3>
           <p>Agent actions — API calls, file writes, database queries — are not logged. When something goes wrong, there is no record of what the agent did, when, or why. Forensics and compliance become impossible.</p>
-          <div class="threat-fix">→ L1 the audit control + on-chain AuditRegistry</div>
+          <div class="threat-fix">→ L1 ToolInvocationAudit + on-chain AuditRegistry</div>
         </div>
         <div class="threat-card">
           <div class="threat-label">Failure 5</div>
@@ -300,7 +320,7 @@
           <div class="threat-label">Failure 6</div>
           <h3>Non-technical deployments</h3>
           <p>Non-technical users configuring agents via no-code tools, adding tools and MCP servers without understanding the security implications. Every new tool is a new attack surface. Nobody checks.</p>
-          <div class="threat-fix">→ L2 IDE agent + build gate blocks non-compliant configurations</div>
+          <div class="threat-fix">→ L2 IDE agent + build gate blocks non-compliant configs</div>
         </div>
       </div>
     </div>
@@ -321,13 +341,25 @@
           <div style="margin-bottom:32px;">
             <div class="section-label">L0 — Design time</div>
             <h3 class="display-md" style="margin-bottom:10px;">Formal permission boundaries</h3>
-            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.65; margin-bottom:16px;">
-              Before any agent code is written, the compliance architect defines the agent's permission boundary in the formal risk model. The platform mathematically verifies that the design is complete — if the agent can write outside its approved scope, call an external API without logging, or act on user-controlled input without sanitisation, the model fails verification and no code is generated.
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.65; margin-bottom:0;">
+              Before any agent code is written, the DPO or security architect defines the agent's permission boundary as OCL invariants. These are mathematically verified — if the design has a gap (an agent that can write outside its workspace, or call an API without logging), the model fails verification and no code is generated.
             </p>
-            <div style="padding:16px 20px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-left:3px solid var(--cyan); border-radius:0 var(--radius-md) var(--radius-md) 0;">
-              <p style="font-size:0.8125rem; color:var(--text-secondary); line-height:1.7; margin:0;">
-                The permission boundary is expressed as verifiable constraints — scope limits, audit requirements, input validation rules, credential access rules. Any gap in the design is caught here, before a single line of agent code is written. Technical documentation available under NDA — see below.
-              </p>
+            <div class="ocl-block">
+<span class="ocl-comment">-- Agent may only write to approved paths</span>
+<span class="ocl-keyword">context</span> <span class="ocl-type">AgentAction</span> <span class="ocl-keyword">inv</span> ScopeLimitation:
+  self.actionType = <span class="ocl-type">ActionType</span>::WRITE <span class="ocl-keyword">implies</span>
+    self.targetPath.startsWith(<span class="ocl-value">'/workspace/approved'</span>)
+
+<span class="ocl-comment">-- Every external call must be logged</span>
+<span class="ocl-keyword">context</span> <span class="ocl-type">ToolInvocation</span> <span class="ocl-keyword">inv</span> AuditRequired:
+  self.isExternalCall = <span class="ocl-value">true</span> <span class="ocl-keyword">implies</span>
+    AuditRegistry.allInstances()-&gt;exists(a |
+      a.invocationId = self.id)
+
+<span class="ocl-comment">-- User input must be sanitised before agent context</span>
+<span class="ocl-keyword">context</span> <span class="ocl-type">AgentInput</span> <span class="ocl-keyword">inv</span> InjectionGuard:
+  self.source = <span class="ocl-type">InputSource</span>::USER_CONTROLLED
+    <span class="ocl-keyword">implies</span> self.sanitised = <span class="ocl-value">true</span>
             </div>
           </div>
         </div>
@@ -342,20 +374,20 @@
             </p>
             <div style="display:flex; flex-direction:column; gap:10px;">
               <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-radius:var(--radius-md);">
-                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">Scope control</div>
-                <div style="font-size:0.78rem; color:var(--text-secondary);">Checks every tool call against the approved scope before execution. Any out-of-scope invocation is blocked — the agent cannot act outside its defined boundary.</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">AgentScopeGuard</div>
+                <div style="font-size:0.78rem; color:var(--text-secondary);">Checks every tool call against the approved scope before execution. Throws <code style="font-family:var(--font-mono); font-size:0.72rem;">ComplianceException</code> if out of scope.</div>
               </div>
               <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-radius:var(--radius-md);">
-                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">Tool invocation audit</div>
-                <div style="font-size:0.78rem; color:var(--text-secondary);">Every tool call — API requests, file reads, web searches — is recorded automatically on-chain. Zero unlogged agent actions by design.</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">ToolInvocationAudit</div>
+                <div style="font-size:0.78rem; color:var(--text-secondary);">Calls <code style="font-family:var(--font-mono); font-size:0.72rem;">AuditRegistry.record()</code> on every tool call — API requests, file reads, web searches. All logged on-chain automatically.</div>
               </div>
               <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-radius:var(--radius-md);">
-                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">Input sanitisation</div>
-                <div style="font-size:0.78rem; color:var(--text-secondary);">All user-controlled input is validated before it reaches the agent context. Structural defence against prompt injection — enforced at build time, not runtime.</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">InputSanitisationGuard</div>
+                <div style="font-size:0.78rem; color:var(--text-secondary);">Validates all user-controlled input before it reaches the agent context. Structural defence against prompt injection — not a regex filter, a build-enforced gate.</div>
               </div>
               <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-radius:var(--radius-md);">
-                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">Credential access control</div>
-                <div style="font-size:0.78rem; color:var(--text-secondary);">Credentials are classified as HIGH-risk assets in the threat model. Any code path that accesses a secret without the required control fails at compile time.</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cyan); margin-bottom:3px;">CredentialAccessGuard</div>
+                <div style="font-size:0.78rem; color:var(--text-secondary);">Generated from a threat model that classifies credentials as HIGH-risk. Any code path touching a secret without this guard fails at compile time.</div>
               </div>
             </div>
           </div>
@@ -373,7 +405,7 @@
           <div style="display:flex; flex-direction:column; gap:8px;">
             <div style="display:flex; gap:10px; align-items:flex-start; font-size:0.8rem; color:var(--text-secondary);">
               <span style="color:var(--red); flex-shrink:0;">✗</span>
-              <span>Flags any tool registration not covered by <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the scope control</code></span>
+              <span>Flags any tool registration not covered by <code style="font-family:var(--font-mono); font-size:0.72rem;">AgentScopeGuard</code></span>
             </div>
             <div style="display:flex; gap:10px; align-items:flex-start; font-size:0.8rem; color:var(--text-secondary);">
               <span style="color:var(--red); flex-shrink:0;">✗</span>
@@ -381,7 +413,7 @@
             </div>
             <div style="display:flex; gap:10px; align-items:flex-start; font-size:0.8rem; color:var(--text-secondary);">
               <span style="color:var(--red); flex-shrink:0;">✗</span>
-              <span>Blocks compilation if <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the credential access control</code> is missing from any env var access</span>
+              <span>Blocks compilation if <code style="font-family:var(--font-mono); font-size:0.72rem;">CredentialAccessGuard</code> is missing from any env var access</span>
             </div>
             <div style="display:flex; gap:10px; align-items:flex-start; font-size:0.8rem; color:var(--text-secondary);">
               <span style="color:var(--green); flex-shrink:0;">✓</span>
@@ -396,7 +428,7 @@
           <div style="display:flex; flex-direction:column; gap:10px;">
             <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-top:2px solid var(--cyan); border-radius:var(--radius-lg);">
               <div style="font-family:var(--font-mono); font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:6px;">Check 1 · Presence</div>
-              <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">All four agent guards present? <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the scope control</code>, <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the audit control</code>, <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the input sanitisation control</code>, <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the credential access control</code>. Any missing = build fails.</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">All four agent guards present? <code style="font-family:var(--font-mono); font-size:0.72rem;">AgentScopeGuard</code>, <code style="font-family:var(--font-mono); font-size:0.72rem;">ToolInvocationAudit</code>, <code style="font-family:var(--font-mono); font-size:0.72rem;">InputSanitisationGuard</code>, <code style="font-family:var(--font-mono); font-size:0.72rem;">CredentialAccessGuard</code>. Any missing = build fails.</div>
             </div>
             <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-top:2px solid var(--amber); border-radius:var(--radius-lg);">
               <div style="font-family:var(--font-mono); font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:6px;">Check 2 · Coverage</div>
@@ -404,7 +436,7 @@
             </div>
             <div style="padding:14px 16px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-top:2px solid var(--red); border-radius:var(--radius-lg);">
               <div style="font-family:var(--font-mono); font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:6px;">Check 3 · Integrity</div>
-              <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">Is any <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">a compliance exception</code> silently discarded? Shadow variables disabling audit logging? Reflection bypassing the credential guard? Caught before merge.</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">Is any <code style="font-family:var(--font-mono); font-size:0.72rem;">ComplianceException</code> silently discarded? Shadow variables disabling audit logging? Reflection bypassing the credential guard? Caught before merge.</div>
             </div>
           </div>
         </div>
@@ -473,7 +505,7 @@
                 <div class="pipeline-action">Adds new tool to agent</div>
               </div>
               <div class="pipeline-right">
-                <div class="pipeline-outcome">L2 IDE agent immediately flags missing <code style="font-family:var(--font-mono); font-size:0.72rem; font-style:italic;">the scope control</code>. Plain-language explanation of which rule applies.</div>
+                <div class="pipeline-outcome">L2 IDE agent immediately flags missing <code style="font-family:var(--font-mono); font-size:0.72rem;">AgentScopeGuard</code>. Plain-language explanation of which rule applies.</div>
                 <div class="pipeline-tag tag-warn">⚠ Caught at coding time</div>
               </div>
             </div>
@@ -585,28 +617,6 @@
       </table>
       <div style="margin-top:16px;">
         <a href="regulations.html" style="color:var(--cyan); font-family:var(--font-mono); font-size:0.8rem; text-decoration:none;">View all 26 frameworks on the regulations page →</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Technical documentation CTA -->
-  <section class="section section-sm" style="background:var(--bg-deep); padding-top:48px; padding-bottom:48px;">
-    <div class="container">
-      <div style="display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; padding:28px 32px; background:var(--bg-card); border:0.5px solid var(--border-accent); border-radius:var(--radius-xl);">
-        <div>
-          <div class="section-label" style="margin-bottom:10px;">Technical documentation</div>
-          <h3 class="display-md" style="margin-bottom:8px;">Want the full technical specification?</h3>
-          <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.65; max-width:520px;">
-            The complete technical documentation — formal model structure, auto-generated guard architecture, CI pipeline implementation, and MCP integration details — is available under NDA. Covers everything shown here in full engineering depth, plus the full 4-layer implementation guide for agent deployments.
-          </p>
-        </div>
-        <div style="flex-shrink:0; text-align:center;">
-          <a href="mailto:contact@threadledger.io?subject=Technical Documentation Request — AI Agent Security&body=Name:%0ACompany:%0ARole:%0AUse case:" class="btn btn-primary btn-lg" style="white-space:nowrap;">
-            Request under NDA →
-          </a>
-          <p style="font-size:0.72rem; color:var(--text-muted); margin-top:8px; font-family:var(--font-mono);">NDA sent within 1 business day</p>
-        </div>
       </div>
     </div>
   </section>
