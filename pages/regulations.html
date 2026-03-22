@@ -9,74 +9,94 @@
   <script src="../js/theme.js"></script>
   <link rel="stylesheet" href="../css/design-system.css" />
   <style>
-    .page-hero { padding: calc(var(--nav-h) + 56px) 0 48px; position: relative; z-index: 1; }
+    .page-hero {
+      padding: calc(var(--nav-h) + 56px) 0 48px;
+      position: relative; z-index: 1;
+    }
 
-    /* ── Framework nav ── */
-    .tab-bar-wrap {
+    /* ── Sidebar layout ── */
+    .reg-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Sidebar */
+    .reg-sidebar {
       position: sticky;
-      top: var(--nav-h);
-      z-index: 50;
-      background: var(--bg-void);
-      border-bottom: 0.5px solid var(--border-dim);
-      transition: background 0.3s ease;
-      padding: 8px 0;
+      top: calc(var(--nav-h) + 24px);
+      max-height: calc(100vh - var(--nav-h) - 48px);
+      overflow-y: auto;
+      padding: 32px 24px 32px 0;
+      scrollbar-width: none;
+      border-right: 0.5px solid var(--border-dim);
     }
+    .reg-sidebar::-webkit-scrollbar { display: none; }
 
-    .fw-nav-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2px;
-      padding: 2px 0;
-    }
+    .sidebar-group { margin-bottom: 28px; }
 
-    .fw-nav-group-label {
+    .sidebar-group-label {
       font-family: var(--font-mono);
       font-size: 0.6rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      width: 44px;
-      flex-shrink: 0;
-      padding: 6px 0;
+      letter-spacing: 0.12em;
+      padding: 0 0 8px 0;
+      margin-bottom: 4px;
+      display: block;
+      border-bottom: 0.5px solid var(--border-dim);
     }
-    .fw-nav-row:nth-child(1) .fw-nav-group-label { color: var(--green); }
-    .fw-nav-row:nth-child(2) .fw-nav-group-label { color: var(--amber); }
-    .fw-nav-row:nth-child(3) .fw-nav-group-label { color: var(--text-muted); }
+    .sidebar-group:nth-child(1) .sidebar-group-label { color: var(--green); }
+    .sidebar-group:nth-child(2) .sidebar-group-label { color: var(--amber); }
+    .sidebar-group:nth-child(3) .sidebar-group-label { color: var(--text-muted); }
 
-    .tab {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 10px;
+    .sidebar-link {
+      display: block;
+      padding: 5px 8px;
       font-family: var(--font-mono);
-      font-size: 0.66rem;
+      font-size: 0.67rem;
       font-weight: 500;
-      letter-spacing: 0.02em;
       color: var(--text-muted);
       text-decoration: none;
-      border: 0.5px solid transparent;
       border-radius: var(--radius-sm);
+      border-left: 2px solid transparent;
+      margin-left: -2px;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       transition: all var(--transition);
-      cursor: pointer;
+      line-height: 1.5;
     }
-    .tab:hover {
+    .sidebar-link:hover {
       color: var(--text-primary);
       background: var(--bg-surface);
-      border-color: var(--border-dim);
     }
-    .tab.active {
+    .sidebar-link.active {
       color: var(--cyan);
+      border-left-color: var(--cyan);
       background: var(--cyan-dim);
-      border-color: var(--border-accent);
     }
-    :root .tab.active { color: var(--green); background: var(--green-dim); border-color: rgba(15,110,86,0.2); }
+    :root .sidebar-link.active {
+      color: var(--green);
+      border-left-color: var(--green);
+      background: var(--green-dim);
+    }
+
+    /* Content area */
+    .reg-content {
+      padding: 0 0 0 40px;
+      min-width: 0;
+    }
 
     /* ── Regulation sections ── */
     .reg-section {
-      padding: 72px 0 80px;
+      padding: 56px 0 64px;
       border-bottom: 0.5px solid var(--border-dim);
-      scroll-margin-top: calc(var(--nav-h) + 48px);
+      scroll-margin-top: calc(var(--nav-h) + 32px);
     }
     .reg-section:last-child { border-bottom: none; }
 
@@ -85,12 +105,12 @@
       grid-template-columns: 1fr auto;
       gap: 24px;
       align-items: start;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .reg-jurisdiction {
       font-family: var(--font-mono);
-      font-size: 0.67rem;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
@@ -102,13 +122,13 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 8px;
+      gap: 7px;
       text-align: right;
     }
 
     .reg-enforcement {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.67rem;
       color: var(--text-muted);
     }
 
@@ -116,51 +136,44 @@
     .coverage-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 32px;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .coverage-item {
       background: var(--bg-card);
       border: 0.5px solid var(--border-dim);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 18px;
       transition: all var(--transition);
     }
     .coverage-item:hover { border-color: var(--border-accent); }
 
     .coverage-label {
       font-family: var(--font-mono);
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
-    .coverage-item h4 {
-      font-size: 0.875rem;
-      margin-bottom: 6px;
-    }
+    .coverage-item h4 { font-size: 0.875rem; margin-bottom: 5px; }
     :root .coverage-item h4 { font-family: var(--font-body); font-weight: 600; }
-    .coverage-item p {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
+    .coverage-item p { font-size: 0.775rem; color: var(--text-secondary); line-height: 1.55; }
 
-    /* How Threadledger maps to articles */
+    /* Article map */
     .article-map {
-      margin-top: 32px;
+      margin-top: 28px;
       border: 0.5px solid var(--border-dim);
       border-radius: var(--radius-lg);
       overflow: hidden;
     }
     .article-map-header {
-      padding: 12px 20px;
+      padding: 10px 18px;
       background: var(--bg-raised);
       font-family: var(--font-mono);
-      font-size: 0.67rem;
+      font-size: 0.63rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -174,7 +187,7 @@
       display: grid;
       grid-template-columns: 140px 1fr 160px;
       gap: 16px;
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-bottom: 0.5px solid var(--border-dim);
       align-items: center;
       transition: background var(--transition);
@@ -183,38 +196,34 @@
     .article-row:hover { background: var(--bg-surface); }
     .article-ref {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: var(--cyan);
     }
     :root .article-ref { color: var(--green); }
-    .article-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
-    .article-layer {
-      display: flex;
-      justify-content: flex-end;
-    }
+    .article-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; }
+    .article-layer { display: flex; justify-content: flex-end; }
 
     /* Roadmap callout */
     .roadmap-callout {
-      margin-top: 32px;
-      padding: 18px 22px;
+      margin-top: 28px;
+      padding: 16px 20px;
       background: var(--amber-dim);
       border: 0.5px solid rgba(186,117,23,0.2);
       border-radius: var(--radius-lg);
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      font-size: 0.8125rem;
+      gap: 12px;
+      font-size: 0.8rem;
       color: var(--text-secondary);
       line-height: 1.6;
     }
     [data-theme="dark"] .roadmap-callout { border-color: rgba(255,170,0,0.2); }
     .roadmap-callout strong { color: var(--amber); }
 
-    /* Overlap note for regulations that share coverage */
     .overlap-note {
-      margin-top: 24px;
-      padding: 14px 18px;
+      margin-top: 20px;
+      padding: 12px 16px;
       background: var(--cyan-dim);
       border: 0.5px solid var(--border-accent);
       border-radius: var(--radius-md);
@@ -223,10 +232,23 @@
       line-height: 1.6;
     }
 
+    /* Responsive */
     @media (max-width: 900px) {
+      .reg-layout { grid-template-columns: 1fr; }
+      .reg-sidebar {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        border-right: none;
+        border-bottom: 0.5px solid var(--border-dim);
+        padding: 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .sidebar-group { margin-bottom: 0; }
+      .reg-content { padding: 0; }
       .coverage-grid { grid-template-columns: 1fr 1fr; }
-      .reg-header { grid-template-columns: 1fr; }
-      .reg-meta { align-items: flex-start; text-align: left; }
       .article-map-header { grid-template-columns: 110px 1fr; }
       .article-row { grid-template-columns: 110px 1fr; }
       .article-layer { display: none; }
@@ -281,50 +303,53 @@
     </div>
   </section>
 
-  <!-- Sticky framework nav -->
-  <div class="tab-bar-wrap">
-    <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+  <!-- Sidebar layout -->
+  <div class="reg-layout">
 
-      <div class="fw-nav-row">
-        <span class="fw-nav-group-label">Live</span>
-        <a class="tab active" href="#eu-ai-act">EU AI Act</a>
-        <a class="tab" href="#gdpr">GDPR</a>
-        <a class="tab" href="#nist">NIST AI RMF</a>
-        <a class="tab" href="#mitre">MITRE ATT&amp;CK</a>
-        <a class="tab" href="#owasp-llm">OWASP LLM Top 10</a>
+    <!-- Fixed sidebar -->
+    <aside class="reg-sidebar" id="reg-sidebar">
+
+      <div class="sidebar-group">
+        <span class="sidebar-group-label">Live</span>
+        <a class="sidebar-link active" href="#eu-ai-act">EU AI Act</a>
+        <a class="sidebar-link" href="#gdpr">GDPR</a>
+        <a class="sidebar-link" href="#nist">NIST AI RMF</a>
+        <a class="sidebar-link" href="#mitre">MITRE ATT&amp;CK</a>
+        <a class="sidebar-link" href="#owasp-llm">OWASP LLM Top 10</a>
       </div>
 
-      <div class="fw-nav-row">
-        <span class="fw-nav-group-label">Soon</span>
-        <a class="tab" href="#eu-mdr">EU MDR / IVDR</a>
-        <a class="tab" href="#dora">DORA</a>
-        <a class="tab" href="#psd3">PSD3</a>
-        <a class="tab" href="#nist-genai">NIST GenAI 600-1</a>
-        <a class="tab" href="#iso42001">ISO 42001</a>
-        <a class="tab" href="#atlas">MITRE ATLAS</a>
-        <a class="tab" href="#fs-ai-rmf">FS AI RMF</a>
+      <div class="sidebar-group">
+        <span class="sidebar-group-label">In Progress</span>
+        <a class="sidebar-link" href="#eu-mdr">EU MDR / IVDR</a>
+        <a class="sidebar-link" href="#dora">DORA</a>
+        <a class="sidebar-link" href="#psd3">PSD3</a>
+        <a class="sidebar-link" href="#nist-genai">NIST GenAI 600-1</a>
+        <a class="sidebar-link" href="#iso42001">ISO 42001</a>
+        <a class="sidebar-link" href="#atlas">MITRE ATLAS</a>
+        <a class="sidebar-link" href="#fs-ai-rmf">FS AI RMF</a>
       </div>
 
-      <div class="fw-nav-row">
-        <span class="fw-nav-group-label">Planned</span>
-        <a class="tab" href="#fda-samd">FDA AI/ML SaMD</a>
-        <a class="tab" href="#cfr-part11">21 CFR Part 11</a>
-        <a class="tab" href="#ich-gcp">ICH E6 GCP</a>
-        <a class="tab" href="#iec62304">IEC 62304</a>
-        <a class="tab" href="#iso26262">ISO 26262 / SOTIF</a>
-        <a class="tab" href="#apra">APRA CPS 230</a>
-        <a class="tab" href="#uk-ai">UK AI Act</a>
-        <a class="tab" href="#uae-ai">UAE AI</a>
-        <a class="tab" href="#colorado-texas">Colorado / Texas</a>
-        <a class="tab" href="#korea">Korea AI Act</a>
-        <a class="tab" href="#japan">Japan AI</a>
-        <a class="tab" href="#singapore">Singapore PDPA</a>
+      <div class="sidebar-group">
+        <span class="sidebar-group-label">Planned</span>
+        <a class="sidebar-link" href="#fda-samd">FDA AI/ML SaMD</a>
+        <a class="sidebar-link" href="#cfr-part11">21 CFR Part 11</a>
+        <a class="sidebar-link" href="#ich-gcp">ICH E6 GCP</a>
+        <a class="sidebar-link" href="#iec62304">IEC 62304</a>
+        <a class="sidebar-link" href="#iso26262">ISO 26262 / SOTIF</a>
+        <a class="sidebar-link" href="#apra">APRA CPS 230</a>
+        <a class="sidebar-link" href="#uk-ai">UK AI Act</a>
+        <a class="sidebar-link" href="#uae-ai">UAE AI</a>
+        <a class="sidebar-link" href="#colorado-texas">Colorado / Texas</a>
+        <a class="sidebar-link" href="#korea">Korea AI Act</a>
+        <a class="sidebar-link" href="#japan">Japan AI</a>
+        <a class="sidebar-link" href="#singapore">Singapore PDPA</a>
       </div>
 
-    </div>
-  </div>
+    </aside>
 
-  <div class="container">
+    <!-- Scrollable content -->
+    <div class="reg-content">
+
 
 
     <!-- ── EU AI ACT ── -->
@@ -1397,7 +1422,9 @@
       </div>
     </section>
 
-  </div><!-- /container -->
+    </div><!-- /reg-content -->
+  </div><!-- /reg-layout -->
+
 
   <!-- CTA -->
   <section class="section" style="background:var(--bg-deep);">
