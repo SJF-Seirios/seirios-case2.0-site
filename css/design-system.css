@@ -1,3 +1,12 @@
+/*
+ * THREADLEDGER DESIGN SYSTEM
+ * NOTE: This file is NOT currently linked from any page.
+ * All CSS is inlined directly in each HTML file's <style> block.
+ * This file is kept as a reference / source of truth.
+ * If you re-link it, remove the duplicate nav CSS from the inline blocks first.
+ */
+
+
 /* ============================================================
    THREADLEDGER DESIGN SYSTEM — DUAL THEME
    Light (default): DM Serif Display + DM Mono + Figtree — warm, document-like
@@ -474,96 +483,6 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 
 /* ── Responsive ── */
 
-
-/* ── Hamburger / mobile nav ── */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 40px; height: 40px;
-  background: none; border: none;
-  cursor: pointer; padding: 8px;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition);
-  flex-shrink: 0;
-  margin-left: auto;
-}
-.nav-hamburger:hover { background: var(--bg-surface); }
-.nav-hamburger span {
-  display: block; width: 20px; height: 2px;
-  background: var(--text-primary);
-  border-radius: 2px;
-  transition: all 0.25s ease;
-  transform-origin: center;
-}
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* Mobile drawer */
-.nav-mobile {
-  position: fixed;
-  top: var(--nav-h); left: 0; right: 0;
-  background: var(--bg-void);
-  border-bottom: 0.5px solid var(--border-dim);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  z-index: 99;
-  padding: 12px 0 16px;
-  transform: translateY(-8px);
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s ease;
-  pointer-events: none;
-  /* display controlled by media query and .open class only */
-}
-[data-theme="dark"] .nav-mobile {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-}
-.nav-mobile.open {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-}
-
-
-.nav-mobile a, .nav-mobile button.nav-mobile-trigger {
-  display: block; width: 100%;
-  padding: 11px 24px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem; font-weight: 500;
-  background: none; border: none;
-  text-align: left; cursor: pointer;
-  font-family: var(--font-body);
-  transition: all var(--transition);
-}
-.nav-mobile a:hover, .nav-mobile button.nav-mobile-trigger:hover {
-  color: var(--text-primary);
-  background: var(--bg-surface);
-}
-.nav-mobile a.active { color: var(--cyan); }
-.nav-mobile-group {
-  padding: 4px 24px 2px;
-  font-family: var(--font-mono);
-  font-size: 0.6rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.12em;
-  color: var(--text-muted);
-  margin-top: 8px;
-}
-.nav-mobile-divider {
-  height: 0.5px; background: var(--border-dim);
-  margin: 8px 24px;
-}
-.nav-mobile-sub {
-  padding-left: 36px !important;
-  font-size: 0.85rem !important;
-}
-
-@media (max-width: 900px) {
-  .nav-hamburger { display: flex !important; }
   .nav-links     { display: none !important; }
   .nav-right     { display: none !important; }
   .section       { padding: 60px 0; }
