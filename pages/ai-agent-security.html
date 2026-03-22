@@ -223,7 +223,7 @@
         <li><a href="../for-devops.html">For DevSecOps</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="../index.html#pricing">Pricing</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#4a2925243e2b293e0a3e22382f2b2e262f2e2d2f38642325">Contact</a></li>
+        <li><a href="mailto:contact@threadledger.io">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -262,7 +262,7 @@
     <a href="for-devops.html">For DevSecOps</a>
     <a href="about.html">About</a>
     <a href="../index.html#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#9af9f5f4eefbf9eedaeef2e8fffbfef6fffefdffe8b4f3f5">Contact</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
   </div>
@@ -634,7 +634,7 @@
           </p>
         </div>
         <div style="flex-shrink:0; text-align:center;">
-          <a href="/cdn-cgi/l/email-protection#6e0d01001a0f0d1a2e1a061c0b0f0a020b0a090b1c400701511d1b0c040b0d1a533a0b0d0600070d0f024e2a010d1b030b001a0f1a0701004e3c0b1f1b0b1d1a4e8ceefa4e2f274e2f090b001a4e3d0b0d1b1c071a17480c010a1753200f030b544b5e2f2d01031e0f0017544b5e2f3c01020b544b5e2f3b1d0b4e0d0f1d0b54" class="btn btn-primary btn-lg" style="white-space:nowrap;">
+          <a href="mailto:contact@threadledger.io" class="btn btn-primary btn-lg" style="white-space:nowrap;">
             Request under NDA →
           </a>
           <p style="font-size:0.72rem; color:var(--text-muted); margin-top:8px; font-family:var(--font-mono);">NDA sent within 1 business day</p>
@@ -717,9 +717,32 @@
           hamburger.classList.remove('open');
           mobileNav.classList.remove('open');
         });
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = h.classList.toggle('open');
+        m.classList.toggle('open', open);
+        h.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', function(e) {
+        if (!h.contains(e.target) && !m.contains(e.target)) {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        }
+      });
+      m.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        });
       });
     })();
   </script>
-
 </body>
 </html>

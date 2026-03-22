@@ -294,7 +294,7 @@
         <li><a href="../for-devops.html">For DevSecOps</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="../index.html#pricing">Pricing</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#7b1814150f1a180f3b0f13091e1a1f171e1f1c1e09551214">Contact</a></li>
+        <li><a href="mailto:contact@threadledger.io">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -333,7 +333,7 @@
     <a href="for-devops.html">For DevSecOps</a>
     <a href="about.html">About</a>
     <a href="../index.html#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#593a36372d383a2d192d312b3c383d353c3d3e3c2b773036">Contact</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
   </div>
@@ -1629,7 +1629,7 @@
         </p>
         <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
           <a href="request-demo.html" class="btn btn-primary btn-lg">Request Demo →</a>
-          <a href="/cdn-cgi/l/email-protection#9ffcf0f1ebfefcebdfebf7edfafefbf3fafbf8faedb1f6f0a0eceafdf5fafceba2cdfaf8eaf3feebf6f0f1bfefedf0f9f6f3fabfedfaeeeafaeceb" class="btn btn-outline btn-lg">Request a regulation profile</a>
+          <a href="mailto:contact@threadledger.io" class="btn btn-outline btn-lg">Request a regulation profile</a>
         </div>
       </div>
     </div>
@@ -1646,13 +1646,13 @@
         <div style="display:flex; gap:18px;">
           <a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Home</a>
           <a href="../for-ciso.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">For CISOs &amp; DPOs</a>
-          <a href="/cdn-cgi/l/email-protection#55363a3b2134362115213d273034313930313230277b3c3a" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;"><span class="__cf_email__" data-cfemail="7b1814150f1a180f3b0f13091e1a1f171e1f1c1e09551214">[email&#160;protected]</span></a>
+          <a href="mailto:contact@threadledger.io" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;"><span class="__cf_email__" data-cfemail="7b1814150f1a180f3b0f13091e1a1f171e1f1c1e09551214">[email&#160;protected]</span></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Highlight active tab on scroll
     const sections = document.querySelectorAll('.reg-section');
     const tabs = document.querySelectorAll('.tab');
@@ -1691,13 +1691,33 @@
         }
       });
       mobileNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function()
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = h.classList.toggle('open');
+        m.classList.toggle('open', open);
+        h.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', function(e) {
+        if (!h.contains(e.target) && !m.contains(e.target)) {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        }
+      });
+      m.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', function() {
-          hamburger.classList.remove('open');
-          mobileNav.classList.remove('open');
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
         });
       });
     })();
   </script>
-
 </body>
 </html>

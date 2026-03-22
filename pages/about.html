@@ -196,7 +196,7 @@
         <li><a href="../for-devops.html">For DevSecOps</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="../index.html#pricing">Pricing</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#a6c5c9c8d2c7c5d2e6d2ced4c3c7c2cac3c2c1c3d488cfc9">Contact</a></li>
+        <li><a href="mailto:contact@threadledger.io">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -235,7 +235,7 @@
     <a href="for-devops.html">For DevSecOps</a>
     <a href="about.html">About</a>
     <a href="../index.html#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#e3808c8d97828097a3978b918682878f8687848691cd8a8c">Contact</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
   </div>
@@ -309,7 +309,7 @@
 
       <div style="margin-top:20px; padding:16px 20px; background:var(--cyan-dim); border:0.5px solid var(--border-accent); border-radius:var(--radius-md); max-width:640px;">
         <p style="font-size:0.8125rem; color:var(--text-secondary); line-height:1.6;">
-          <strong style="color:var(--cyan);">Interested in joining?</strong> We're looking for engineers and early team members who care about formal methods, AI safety, and building infrastructure that matters. Email <a href="/cdn-cgi/l/email-protection#f99a96978d989a8db98d918b9c989d959c9d9e9c8bd79096c68a8c9b939c9a8dc4b396909790979ed9ad918b9c989d959c9d9e9c8b" style="color:var(--cyan);"><span class="__cf_email__" data-cfemail="1d7e7273697c7e695d69756f787c797178797a786f337472">[email&#160;protected]</span></a>.
+          <strong style="color:var(--cyan);">Interested in joining?</strong> We're looking for engineers and early team members who care about formal methods, AI safety, and building infrastructure that matters. Email <a href="mailto:contact@threadledger.io" style="color:var(--cyan);"><span class="__cf_email__" data-cfemail="1d7e7273697c7e695d69756f787c797178797a786f337472">[email&#160;protected]</span></a>.
         </p>
       </div>
     </div>
@@ -411,7 +411,7 @@
         </p>
         <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
           <a href="request-demo.html" class="btn btn-primary btn-lg">Request Demo →</a>
-          <a href="/cdn-cgi/l/email-protection#2f4c40415b4e4c5b6f5b475d4a4e4b434a4b484a5d014640" class="btn btn-outline btn-lg">Get in touch</a>
+          <a href="mailto:contact@threadledger.io" class="btn btn-outline btn-lg">Get in touch</a>
         </div>
       </div>
     </div>
@@ -466,13 +466,33 @@
         }
       });
       mobileNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function()
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = h.classList.toggle('open');
+        m.classList.toggle('open', open);
+        h.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', function(e) {
+        if (!h.contains(e.target) && !m.contains(e.target)) {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        }
+      });
+      m.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', function() {
-          hamburger.classList.remove('open');
-          mobileNav.classList.remove('open');
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
         });
       });
     })();
   </script>
-
 </body>
 </html>

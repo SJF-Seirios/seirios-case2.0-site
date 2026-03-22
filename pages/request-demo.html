@@ -167,7 +167,7 @@
         <li><a href="../for-devops.html">For DevSecOps</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="../index.html#pricing">Pricing</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#086b67667c696b7c487c607a6d696c646d6c6f6d7a266167">Contact</a></li>
+        <li><a href="mailto:contact@threadledger.io">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -206,7 +206,7 @@
     <a href="for-devops.html">For DevSecOps</a>
     <a href="about.html">About</a>
     <a href="../index.html#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#8cefe3e2f8edeff8ccf8e4fee9ede8e0e9e8ebe9fea2e5e3">Contact</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
   </div>
@@ -249,11 +249,11 @@
               <p style="font-size:0.8125rem; color:var(--text-secondary); max-width:280px; line-height:1.6; margin-bottom:16px;">
                 Tally form coming soon. In the meantime, email us directly and we'll get back to you within one business day.
               </p>
-              <a href="/cdn-cgi/l/email-protection#14777b7a6075776054607c667175707871707371663a7d7b2b6761767e717760295071797b344671656171676032767b706d295a7579712e312455577b7964757a6d2e312455467b78712e31245541677134777567712e31245544667172716666717034607d79712e" class="btn btn-primary">
+              <a href="mailto:contact@threadledger.io" class="btn btn-primary">
                 Email demo request →
               </a>
               <p style="font-size:0.72rem; color:var(--text-muted); margin-top:12px; font-family:var(--font-mono);">
-                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5969a9b81949681b5819d87909491999091929087db9c9a">[email&#160;protected]</a>
+                <a href="mailto:contact@threadledger.io">contact@threadledger.io</a>
               </p>
             </div>
             <!-- Uncomment and fill in once you have a Tally URL:
@@ -352,7 +352,7 @@
       </div>
       <div class="faq-item" style="border-bottom:none;">
         <div class="faq-q">What if I just want to discuss our compliance situation first?</div>
-        <div class="faq-a">That's fine too — email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="365559584257554276425e445357525a5352515344185f59">[email&#160;protected]</a> with a brief description of your use case and we'll have a plain conversation before scheduling anything formal.</div>
+        <div class="faq-a">That's fine too — email us at <a href="mailto:contact@threadledger.io">contact@threadledger.io</a> with a brief description of your use case and we'll have a plain conversation before scheduling anything formal.</div>
       </div>
     </div>
   </section>
@@ -407,9 +407,32 @@
           hamburger.classList.remove('open');
           mobileNav.classList.remove('open');
         });
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = h.classList.toggle('open');
+        m.classList.toggle('open', open);
+        h.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', function(e) {
+        if (!h.contains(e.target) && !m.contains(e.target)) {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        }
+      });
+      m.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        });
       });
     })();
   </script>
-
 </body>
 </html>

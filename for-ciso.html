@@ -67,7 +67,7 @@
         <li><a href="for-devops.html" class="">For DevSecOps</a></li>
         <li><a href="pages/about.html">About</a></li>
         <li><a href="index.html#pricing">Pricing</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#abc8c4c5dfcac8dfebdfc3d9cecacfc7cecfccced985c2c4">Contact</a></li>
+        <li><a href="mailto:contact@threadledger.io">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="pages/request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -106,7 +106,7 @@
     <a href="for-devops.html">For DevSecOps</a>
     <a href="pages/about.html">About</a>
     <a href="index.html#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#264549485247455266524e544347424a4342414354084f49">Contact</a>
+    <a href="mailto:contact@threadledger.io">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="pages/request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
   </div>
@@ -122,7 +122,7 @@
       </p>
       <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;">
         <a href="index.html#request-demo" class="btn btn-primary btn-lg">Request Demo →</a>
-        <a href="/cdn-cgi/l/email-protection#30535f5e44515344704458425551545c55545755421e595f0f4345525a5553440d7379637f10755e4145594249" class="btn btn-outline btn-lg">Talk to us</a>
+        <a href="mailto:contact@threadledger.io" class="btn btn-outline btn-lg">Talk to us</a>
       </div>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <span class="badge badge-amber" style="padding:6px 12px;">⚡ Aug 2026 — EU AI Act HIGH-risk enforcement</span>
@@ -176,7 +176,7 @@
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
           <div style="width:56px;height:56px;background:var(--cyan-dim);border:0.5px solid var(--border-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent var(--cyan);margin-left:3px;"></div></div>
           <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);">Demo video coming soon</span>
-          <a href="/cdn-cgi/l/email-protection#b0d3dfdec4d1d3c4f0c4d8c2d5d1d4dcd5d4d7d5c29ed9df8fc3c5d2dad5d3c48df3f9e3ff90f4d5dddf90e2d5c1c5d5c3c4" class="btn btn-primary btn-sm">Request live demo instead →</a>
+          <a href="mailto:contact@threadledger.io" class="btn btn-primary btn-sm">Request live demo instead →</a>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@
       <div class="cta-banner">
         <h2 class="display-md" style="margin-bottom:10px;">August 2026 is <span style="color:var(--amber);">closer than it looks</span>.</h2>
         <p style="color:var(--text-secondary); max-width:400px; margin:0 auto 22px; line-height:1.65;">Pilot customers are welcome now. We work with you to build your risk model and validate the evidence chain against your AI system before enforcement hits.</p>
-        <a href="/cdn-cgi/l/email-protection#04676b6a7065677044706c766165606861606361762a6d6b3b7771666e61677039474d574b244061776d636a24546576706a617624546d686b70" class="btn btn-primary btn-lg">Apply for Pilot Programme →</a>
+        <a href="mailto:contact@threadledger.io" class="btn btn-primary btn-lg">Apply for Pilot Programme →</a>
       </div>
     </div>
   </section>
@@ -256,9 +256,32 @@
           hamburger.classList.remove('open');
           mobileNav.classList.remove('open');
         });
+  <script>
+    (function() {
+      var h = document.getElementById('nav-hamburger');
+      var m = document.getElementById('nav-mobile');
+      if (!h || !m) return;
+      h.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = h.classList.toggle('open');
+        m.classList.toggle('open', open);
+        h.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', function(e) {
+        if (!h.contains(e.target) && !m.contains(e.target)) {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        }
+      });
+      m.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          h.classList.remove('open');
+          m.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+        });
       });
     })();
   </script>
-
 </body>
 </html>

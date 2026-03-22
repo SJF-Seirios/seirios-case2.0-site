@@ -508,7 +508,6 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 
 /* Mobile drawer */
 .nav-mobile {
-  display: none;
   position: fixed;
   top: var(--nav-h); left: 0; right: 0;
   background: var(--bg-void);
@@ -518,8 +517,11 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   padding: 12px 0 16px;
   transform: translateY(-8px);
   opacity: 0;
-  transition: all 0.2s ease;
+  visibility: hidden;
+  transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s ease;
   pointer-events: none;
+  /* Hidden by default on all screen sizes */
+  display: none;
 }
 [data-theme="dark"] .nav-mobile {
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
@@ -527,7 +529,15 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 .nav-mobile.open {
   transform: translateY(0);
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
+}
+
+@media (max-width: 768px) {
+  /* Show drawer container (hidden by default, shown when .open) */
+  .nav-mobile {
+    display: block;
+  }
 }
 .nav-mobile a, .nav-mobile button.nav-mobile-trigger {
   display: block; width: 100%;
