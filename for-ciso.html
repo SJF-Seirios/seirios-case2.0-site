@@ -784,73 +784,37 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         })
   <script>
     (function() {
-      var hamburger = document.getElementById('nav-hamburger');
-      var mobileNav = document.getElementById('nav-mobile');
-      if (!hamburger || !mobileNav) return;
-      hamburger.addEventListener('click', function() {
-        var isOpen = hamburger.classList.toggle('open');
-        mobileNav.classList.toggle('open', isOpen);
-        hamburger.setAttribute('aria-expanded', isOpen);
-      });
-      document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-          hamburger.classList.remove('open');
-          mobileNav.classList.remove('open');
-        }
-      });
-      mobileNav.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          hamburger.classList.remove('open');
-          mobileNav.classList.remove('open');
-        });
-  <script>
-    (function() {
       var h = document.getElementById('nav-hamburger');
       var m = document.getElementById('nav-mobile');
-      if (!h || !m) return;
-      h.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = h.classList.toggle('open');
-        m.classList.toggle('open', open);
-        h.setAttribute('aria-expanded', String(open));
-      });
-      document.addEventListener('click', function(e) {
-        if (!h.contains(e.target) && !m.contains(e.target)) {
+      var nl = document.querySelector('.nav-links');
+      var nr = document.querySelector('.nav-right');
+      if (!h || !m || !nl || !nr) return;
+
+      // Set initial state based on window width — pure JS, no CSS media queries
+      function setNavMode() {
+        if (window.innerWidth <= 900) {
+          // Mobile: show hamburger, hide desktop nav
+          h.style.setProperty('display', 'flex', 'important');
+          h.style.flexDirection = 'column';
+          h.style.justifyContent = 'center';
+          h.style.alignItems = 'center';
+          h.style.gap = '5px';
+          nl.style.setProperty('display', 'none', 'important');
+          nr.style.setProperty('display', 'none', 'important');
+        } else {
+          // Desktop: hide hamburger, show desktop nav
+          h.style.setProperty('display', 'none', 'important');
+          m.style.display = 'none';
+          nl.style.removeProperty('display');
+          nr.style.removeProperty('display');
           h.classList.remove('open');
-          m.classList.remove('open');
-          h.setAttribute('aria-expanded', 'false');
         }
-      });
-      m.quer
+      }
 
-  <script>
-    (function() {
-      var h = document.getElementById('nav-hamburger');
-      var m = document.getElementById('nav-mobile');
-      if (!h || !m) return;
-      h.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = h.classList.toggle('open');
-        m.classList.toggle('open', isOpen);
-        h.setAttribute('aria-expanded', String(isOpen));
-      });
-      document.addEventListener('click', function(e) {
-        if (!h.contains(e.target) && !m.contains(e.target)) {
-
-  <script>
-    (function(){
-      var h=document.getElementById('nav-hamburger');
-      var m=document.getElementById('nav-mobile');
-      if(!h||!m)return;
-      h.addEventListener('click',function(e){e.stopPropagation();var o=h.classList.toggle('open');m.classList.toggle('open',o);});
-      document.addEventListener('click',function(e){if(!h.contains(e.target)&&!m.contains(e.target)){h.classList.rem
-  <script>
-    (function() {
-      var h = document.getElementById('nav-hamburger');
-      var m = document.getElementById('nav-mobile');
-      if (!h || !m) return;
+      // Drawer toggle
       function closeMenu() { m.style.display = 'none'; h.classList.remove('open'); }
       function openMenu()  { m.style.display = 'block'; h.classList.add('open'); }
+
       h.addEventListener('click', function(e) {
         e.stopPropagation();
         m.style.display === 'block' ? closeMenu() : openMenu();
@@ -861,6 +825,10 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       m.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', closeMenu);
       });
+
+      // Run on load and on resize
+      setNavMode();
+      window.addEventListener('resize', setNavMode);
     })();
   </script>
 </body>
