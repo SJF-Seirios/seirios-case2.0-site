@@ -296,8 +296,8 @@
         Threadledger covers both the regulatory obligation and the underlying safety engineering discipline. Compliance frameworks, adversarial threat models, and formal safety standards — all verified by the same 4-layer platform.
       </p>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <span class="badge badge-green">5 live</span>
-        <span class="badge badge-amber">6 in progress</span>
+        <span class="badge badge-green">6 live</span>
+        <span class="badge badge-amber">8 in progress</span>
         <span class="badge" style="background:var(--bg-raised); color:var(--text-muted); border:0.5px solid var(--border-dim);">13 planned</span>
       </div>
     </div>
@@ -316,6 +316,7 @@
         <a class="sidebar-link" href="#nist">NIST AI RMF</a>
         <a class="sidebar-link" href="#mitre">MITRE ATT&amp;CK</a>
         <a class="sidebar-link" href="#owasp-llm">OWASP LLM Top 10</a>
+        <a class="sidebar-link" href="#owasp-agents">OWASP Agentic Top 10</a>
       </div>
 
       <div class="sidebar-group">
@@ -326,6 +327,7 @@
         <a class="sidebar-link" href="#nist-genai">NIST GenAI 600-1</a>
         <a class="sidebar-link" href="#iso42001">ISO 42001</a>
         <a class="sidebar-link" href="#atlas">MITRE ATLAS</a>
+        <a class="sidebar-link" href="#google-saif">Google SAIF</a>
         <a class="sidebar-link" href="#fs-ai-rmf">FS AI RMF</a>
       </div>
 
@@ -996,6 +998,85 @@
     </section>
 
 
+
+    <!-- ── OWASP TOP 10 FOR LLM AGENTS ── -->
+    <section class="reg-section" id="owasp-agents">
+      <div class="reg-header">
+        <div>
+          <div class="reg-jurisdiction">OWASP Foundation · Top 10 for LLM Agents (2024)</div>
+          <h2 class="display-lg">OWASP Agentic Top 10</h2>
+        </div>
+        <div class="reg-meta">
+          <span class="badge badge-green">Live</span>
+          <span class="badge badge-cyan">AI Agent Security</span>
+          <span class="reg-enforcement">Any organisation building or deploying autonomous AI agents</span>
+        </div>
+      </div>
+      <p style="font-size:0.9375rem; color:var(--text-secondary); max-width:720px; line-height:1.7; margin-bottom:24px;">
+        The OWASP Top 10 for LLM Agents extends the LLM Top 10 to cover the specific vulnerabilities of autonomous agent systems — where the risk is not just what the model says, but what the agent <em>does</em>. Agents with access to tools, APIs, filesystems, and credentials introduce an entirely new attack surface. Threadledger addresses all ten categories through formally verified scope invariants, auto-generated tool guards, and CI-enforced permission boundaries.
+      </p>
+      <div class="article-map">
+        <div class="article-map-header">
+          <span>Risk</span>
+          <span>Description</span>
+          <span style="text-align:right;">Threadledger layer</span>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent01</span>
+          <span class="article-desc">Unbounded agent scope — agent takes actions outside its intended operational boundary</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 scope invariants</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent02</span>
+          <span class="article-desc">Tool misuse — agent invokes tools in unintended ways or with unintended parameters</span>
+          <div class="article-layer"><span class="badge badge-cyan">L1 tool guards</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent03</span>
+          <span class="article-desc">Prompt injection via tool output — malicious instructions injected through tool responses</span>
+          <div class="article-layer"><span class="badge badge-cyan">L1 + L3 bypass detection</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent04</span>
+          <span class="article-desc">Credential exposure — API keys, secrets, and tokens accessible to agent without access controls</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 + L1 credential guards</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent05</span>
+          <span class="article-desc">Missing audit trail — agent actions not logged, making forensics and compliance impossible</span>
+          <div class="article-layer"><span class="badge badge-cyan">L1 on-chain audit log</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent06</span>
+          <span class="article-desc">Insufficient human oversight — agent operates autonomously in situations requiring human approval</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 oversight invariants</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent07</span>
+          <span class="article-desc">Multi-agent trust failure — agent blindly trusts instructions from another agent without verification</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 + L1 trust controls</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent08</span>
+          <span class="article-desc">Memory manipulation — persistent agent memory poisoned with adversarial content</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 threat model</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent09</span>
+          <span class="article-desc">Uncontrolled resource consumption — agent triggers runaway API calls or cloud resource usage</span>
+          <div class="article-layer"><span class="badge badge-cyan">L1 rate guards + L3</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">Agent10</span>
+          <span class="article-desc">Irreversible actions without confirmation — agent executes destructive operations without human approval</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 reversibility invariants</span></div>
+        </div>
+      </div>
+      <div class="overlap-note">
+        <strong style="color:var(--cyan);">Different from OWASP LLM Top 10:</strong> LLM Top 10 covers model-level risks (what the model outputs). Agentic Top 10 covers action-level risks (what the agent does with that output). Both profiles are needed for any production agent deployment. Threadledger addresses both through the same risk model.
+      </div>
+    </section>
+
     <!-- ── ISO 42001 ── -->
     <section class="reg-section" id="iso42001">
       <div class="reg-header">
@@ -1165,6 +1246,61 @@
       </div>
     </section>
 
+
+
+    <!-- ── GOOGLE SAIF ── -->
+    <section class="reg-section" id="google-saif">
+      <div class="reg-header">
+        <div>
+          <div class="reg-jurisdiction">Google · Secure AI Framework (SAIF) — 2023, updated 2024</div>
+          <h2 class="display-lg">Google SAIF</h2>
+        </div>
+        <div class="reg-meta">
+          <span class="badge badge-amber">In progress</span>
+          <span class="badge badge-cyan">AI Agent Security</span>
+          <span class="reg-enforcement">Enterprise AI deployments — increasingly cited in procurement</span>
+        </div>
+      </div>
+      <p style="font-size:0.9375rem; color:var(--text-secondary); max-width:720px; line-height:1.7; margin-bottom:24px;">
+        Google's Secure AI Framework (SAIF) is the most widely adopted enterprise AI security reference framework that isn't a government regulation. Originally published in 2023 and updated in 2024 to address agentic systems, SAIF defines six core principles for securing AI across the full stack — from the model itself to the deployment infrastructure. It is increasingly cited in enterprise procurement requirements and supplier assessments, making it commercially significant even though it carries no legal force.
+      </p>
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <div class="coverage-label">Expand strong foundations</div>
+          <h4>Secure-by-design AI infrastructure</h4>
+          <p>SAIF requires security built into AI systems from design time, not added after deployment. Threadledger's L0 formal verification and L1 auto-generated controls are exactly this — compliance and security enforced structurally, not through policy.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Extend detection and response</div>
+          <h4>Continuous monitoring of AI behaviour</h4>
+          <p>SAIF requires extending security detection to cover AI-specific threats. Threadledger's L3 CI agent and on-chain audit log provide per-release compliance scoring and immutable behavioural records — the detection layer SAIF requires.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Automate defences</div>
+          <h4>AI-powered security that scales</h4>
+          <p>SAIF advocates for automated security controls that keep pace with AI development velocity. Threadledger's MDD engine generates guards automatically from the verified model — zero manual security code, scales with every code change.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Harmonise platform controls</div>
+          <h4>Consistent controls across the AI stack</h4>
+          <p>SAIF requires consistent security controls across model, data, and infrastructure layers. Threadledger's single risk model drives controls across all four layers — no inconsistency between what the compliance team defined and what engineering deployed.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Adapt controls for AI</div>
+          <h4>AI-specific threat mitigations</h4>
+          <p>SAIF recognises that classical security controls are insufficient for AI. Threadledger's MITRE ATLAS and OWASP Agentic profiles add AI-specific threat categories on top of the classical security baseline.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Contextualise risks</div>
+          <h4>Risk-proportionate controls</h4>
+          <p>SAIF requires controls proportionate to the risk level of each AI deployment. Threadledger's L0 risk classification drives exactly this — HIGH-risk systems get hard-blocking CI gates, lower-risk systems get scored reports.</p>
+        </div>
+      </div>
+      <div class="roadmap-callout">
+        <span style="font-size:1.1rem;">🔧</span>
+        <div><strong>In progress:</strong> A dedicated Google SAIF profile maps SAIF's six principles to Threadledger's 4-layer stack. Organisations including SAIF compliance in supplier assessments can use this profile to generate auditor-ready evidence automatically.</div>
+      </div>
+    </section>
 
     <!-- ── FS AI RMF ── -->
     <section class="reg-section" id="fs-ai-rmf">
