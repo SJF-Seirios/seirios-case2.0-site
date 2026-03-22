@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Threadledger — Regulation Coverage</title>
+  <title>Threadledger — Safety &amp; Compliance Coverage</title>
   <meta name="description" content="Threadledger supports EU AI Act, GDPR, NIST AI RMF, MITRE ATT&CK, DORA, PSD3, and more. Swap regulation profiles without rebuilding your risk model." />
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
   <script src="../js/theme.js"></script>
@@ -35,12 +35,12 @@
     .tab {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 13px 16px;
+      gap: 6px;
+      padding: 12px 13px;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.67rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       color: var(--text-muted);
       text-decoration: none;
       border-bottom: 2px solid transparent;
@@ -54,11 +54,11 @@
       border-bottom-color: var(--cyan);
     }
     .tab-status {
-      font-size: 0.58rem;
+      font-size: 0.54rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 2px 5px;
+      letter-spacing: 0.04em;
+      padding: 2px 4px;
       border-radius: 3px;
     }
     .status-live    { background: var(--green-dim);  color: var(--green); }
@@ -259,17 +259,17 @@
   <!-- Hero -->
   <section class="page-hero" style="background: var(--bg-deep);">
     <div class="container">
-      <div class="section-label">Regulation coverage</div>
+      <div class="section-label">Safety &amp; compliance coverage</div>
       <h1 class="display-xl" style="max-width:680px; margin-bottom:14px;">
-        One platform.<br/><em class="accent">Every regulation.</em>
+        One platform.<br/><em class="accent">Every framework.</em>
       </h1>
       <p style="font-size:1rem; color:var(--text-secondary); max-width:560px; line-height:1.7; margin-bottom:28px;">
-        Threadledger's regulation profiles are modular — swap or combine them without rebuilding your risk model. Live profiles ship today; planned profiles are community-contributed as new laws come into force.
+        Threadledger covers both the regulatory obligation and the underlying safety engineering discipline. Compliance frameworks, adversarial threat models, and formal safety standards — all verified by the same 4-layer platform.
       </p>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <span class="badge badge-green">4 live profiles</span>
-        <span class="badge badge-amber">4 in progress</span>
-        <span class="badge" style="background:var(--bg-raised); color:var(--text-muted); border:0.5px solid var(--border-dim);">7 planned</span>
+        <span class="badge badge-green">5 live profiles</span>
+        <span class="badge badge-amber">5 in progress</span>
+        <span class="badge" style="background:var(--bg-raised); color:var(--text-muted); border:0.5px solid var(--border-dim);">9 planned</span>
       </div>
     </div>
   </section>
@@ -281,11 +281,15 @@
       <a class="tab" href="#gdpr">GDPR <span class="tab-status status-live">Live</span></a>
       <a class="tab" href="#nist">NIST AI RMF <span class="tab-status status-live">Live</span></a>
       <a class="tab" href="#mitre">MITRE ATT&amp;CK <span class="tab-status status-live">Live</span></a>
+      <a class="tab" href="#owasp-llm">OWASP LLM <span class="tab-status status-live">Live</span></a>
       <a class="tab" href="#iso42001">ISO 42001 <span class="tab-status status-soon">Soon</span></a>
+      <a class="tab" href="#atlas">MITRE ATLAS <span class="tab-status status-soon">Soon</span></a>
       <a class="tab" href="#dora">DORA <span class="tab-status status-soon">Soon</span></a>
       <a class="tab" href="#psd3">PSD3 <span class="tab-status status-soon">Soon</span></a>
       <a class="tab" href="#fs-ai-rmf">FS AI RMF <span class="tab-status status-soon">Soon</span></a>
       <a class="tab" href="#apra">APRA CPS 230 <span class="tab-status status-planned">Planned</span></a>
+      <a class="tab" href="#iec62304">IEC 62304 <span class="tab-status status-planned">Planned</span></a>
+      <a class="tab" href="#iso26262">ISO 26262 <span class="tab-status status-planned">Planned</span></a>
       <a class="tab" href="#uk-ai">UK AI Act <span class="tab-status status-planned">Planned</span></a>
       <a class="tab" href="#uae-ai">UAE AI <span class="tab-status status-planned">Planned</span></a>
       <a class="tab" href="#colorado-texas">Colorado / Texas <span class="tab-status status-planned">Planned</span></a>
@@ -522,6 +526,68 @@
 
       <div class="overlap-note">
         <strong style="color:var(--cyan);">Security + compliance in one model:</strong> MITRE threat coverage and EU AI Act / GDPR compliance are defined in the same risk model. No separate security toolchain required.
+      </div>
+    </section>
+
+
+    <!-- ── OWASP LLM TOP 10 ── -->
+    <section class="reg-section" id="owasp-llm">
+      <div class="reg-header">
+        <div>
+          <div class="reg-jurisdiction">OWASP Foundation · OWASP Top 10 for Large Language Model Applications</div>
+          <h2 class="display-lg">OWASP LLM Top 10</h2>
+        </div>
+        <div class="reg-meta">
+          <span class="badge badge-green">Live</span>
+          <span class="badge badge-cyan">Industry standard reference</span>
+          <span class="reg-enforcement">Any organisation building or deploying LLM-based AI systems</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.9375rem; color:var(--text-secondary); max-width:720px; line-height:1.7; margin-bottom:24px;">
+        The OWASP Top 10 for LLMs is the most widely adopted reference list for vulnerabilities specific to large language model applications. Published by the Open Worldwide Application Security Project, it defines the ten most critical risks — from prompt injection and insecure output handling to training data poisoning and model theft. Every engineering team building AI products recognises it. Threadledger's threat ontology maps all ten categories to enforceable controls automatically.
+      </p>
+
+      <div class="article-map">
+        <div class="article-map-header">
+          <span>Risk</span>
+          <span>Description</span>
+          <span style="text-align:right;">Threadledger layer</span>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">LLM01</span>
+          <span class="article-desc">Prompt injection — manipulating LLM behaviour through crafted inputs, direct or indirect</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 + L1 controls</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">LLM02</span>
+          <span class="article-desc">Insecure output handling — downstream components trusting LLM output without validation</span>
+          <div class="article-layer"><span class="badge badge-cyan">L1 controls</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">LLM03</span>
+          <span class="article-desc">Training data poisoning — corrupting training data to introduce backdoors or biases</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 threat model</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">LLM06</span>
+          <span class="article-desc">Sensitive information disclosure — LLM revealing confidential data from training or context</span>
+          <div class="article-layer"><span class="badge badge-cyan">L1 — GDPR controls</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">LLM08</span>
+          <span class="article-desc">Excessive agency — LLM taking unintended actions with real-world consequences</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 + L3 CI gate</span></div>
+        </div>
+        <div class="article-row">
+          <span class="article-ref">LLM10</span>
+          <span class="article-desc">Model theft — extracting proprietary model behaviour through inference attacks</span>
+          <div class="article-layer"><span class="badge badge-cyan">L0 threat model</span></div>
+        </div>
+      </div>
+
+      <div class="overlap-note">
+        <strong style="color:var(--cyan);">Already covered by MITRE profile:</strong> Threadledger's MITRE ATT&CK profile addresses all ten OWASP LLM categories. Making OWASP explicit gives development teams a familiar reference point — the underlying controls are the same.
       </div>
     </section>
 
@@ -788,6 +854,64 @@
       </div>
     </section>
 
+
+    <!-- ── MITRE ATLAS ── -->
+    <section class="reg-section" id="atlas">
+      <div class="reg-header">
+        <div>
+          <div class="reg-jurisdiction">MITRE Corporation · Adversarial Threat Landscape for AI Systems</div>
+          <h2 class="display-lg">MITRE ATLAS</h2>
+        </div>
+        <div class="reg-meta">
+          <span class="badge badge-amber">In progress</span>
+          <span class="badge badge-cyan">MITRE ATT&amp;CK for AI/ML systems</span>
+          <span class="reg-enforcement">Any organisation developing or deploying machine learning systems</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.9375rem; color:var(--text-secondary); max-width:720px; line-height:1.7; margin-bottom:24px;">
+        MITRE ATLAS (Adversarial Threat Landscape for AI Systems) is MITRE's companion framework to ATT&CK, built specifically for machine learning attack surfaces. Where ATT&CK covers enterprise IT threats broadly, ATLAS maps adversarial tactics and techniques targeting ML models directly — including reconnaissance against ML pipelines, model evasion, data poisoning, and ML supply chain compromise. It is the most comprehensive adversarial framework for AI systems available today.
+      </p>
+
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <div class="coverage-label">Reconnaissance</div>
+          <h4>ML pipeline and model discovery attacks</h4>
+          <p>Attackers probing model architecture, training data, and inference APIs. Threadledger maps these vectors to L0 threat classifications and L1 access controls.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">ML attack staging</div>
+          <h4>Capability development for model attacks</h4>
+          <p>Building adversarial examples, shadow models, and poisoned datasets. L0 formal verification catches incomplete mitigations before code is written.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Model evasion</div>
+          <h4>Crafted inputs that bypass model controls</h4>
+          <p>The most common AI safety failure mode. L3 adversarial bypass detection catches evasion patterns in CI before deployment.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Exfiltration</div>
+          <h4>Model inversion and membership inference</h4>
+          <p>Extracting training data or model weights through inference. GDPR and ATLAS controls overlap directly — one configuration covers both.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Impact</div>
+          <h4>Model corruption and availability attacks</h4>
+          <p>Degrading model performance or poisoning production outputs. L3 CI monitors for control bypass patterns that could enable these attacks.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">ATT&amp;CK + ATLAS</div>
+          <h4>One threat model, both frameworks</h4>
+          <p>Threadledger's threat ontology covers both ATT&CK and ATLAS vectors in a single risk model. No separate configuration required.</p>
+        </div>
+      </div>
+
+      <div class="roadmap-callout">
+        <span style="font-size:1.1rem;">🔧</span>
+        <div><strong>In progress:</strong> The ATLAS profile extends Threadledger's existing MITRE ATT&CK coverage with ML-specific tactic and technique mappings. Contact us if ATLAS coverage is a priority — it is in active development.</div>
+      </div>
+    </section>
+
     <!-- ── UK AI ACT ── -->
     <section class="reg-section" id="uk-ai">
       <div class="reg-header">
@@ -925,6 +1049,96 @@
       <div class="roadmap-callout" style="margin-top:16px;">
         <span style="font-size:1.1rem;">📋</span>
         <div><strong>Planned:</strong> A dedicated APRA CPS 230 profile is on the near-term roadmap. Contact us if you are an APRA-regulated institution — this is a priority profile and pilot customers will shape the control mapping.</div>
+      </div>
+    </section>
+
+
+    <!-- ── IEC 62304 ── -->
+    <section class="reg-section" id="iec62304">
+      <div class="reg-header">
+        <div>
+          <div class="reg-jurisdiction">International · IEC 62304:2006+AMD1:2015 — Medical Device Software</div>
+          <h2 class="display-lg">IEC 62304</h2>
+        </div>
+        <div class="reg-meta">
+          <span class="badge" style="background:var(--bg-raised); color:var(--text-muted); border:0.5px solid var(--border-dim);">Planned</span>
+          <span class="badge badge-red">Mandatory for medical device software globally</span>
+          <span class="reg-enforcement">AI in medical devices, diagnostic software, clinical decision support</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.9375rem; color:var(--text-secondary); max-width:720px; line-height:1.7; margin-bottom:24px;">
+        IEC 62304 defines the software development lifecycle requirements for medical device software — including AI systems used for diagnosis, treatment recommendation, and clinical decision support. It is mandatory in the EU (via MDR/IVDR), US (via FDA 510k/PMA), and most global markets. IEC 62304's post-market surveillance requirements are structurally identical to what Threadledger's L3 CI agent produces on every release.
+      </p>
+
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <div class="coverage-label">Software safety classification</div>
+          <h4>Class A / B / C risk classification</h4>
+          <p>IEC 62304's three safety classes map directly to Threadledger's risk level classifications in the L0 threat model. HIGH-risk AI maps to Class C — the strictest requirements.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Software development process</div>
+          <h4>Documented lifecycle with traceability</h4>
+          <p>Every Threadledger release produces a traceable evidence chain from risk definition (L0) to code controls (L1) to developer guidance (L2) to CI verification (L3) — exactly what IEC 62304 requires.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Post-market surveillance</div>
+          <h4>Continuous monitoring after release</h4>
+          <p>IEC 62304 requires ongoing monitoring of deployed software. Threadledger's L3 CI agent and on-chain audit trail provide continuous, per-release evidence for post-market surveillance submissions.</p>
+        </div>
+      </div>
+
+      <div class="roadmap-callout">
+        <span style="font-size:1.1rem;">📋</span>
+        <div><strong>Planned:</strong> IEC 62304 profile is on the roadmap for organisations building AI in medical devices or clinical decision support. The 4-layer Threadledger stack maps almost directly to IEC 62304's software lifecycle documentation requirements.</div>
+      </div>
+    </section>
+
+
+    <!-- ── ISO 26262 / SOTIF ── -->
+    <section class="reg-section" id="iso26262">
+      <div class="reg-header">
+        <div>
+          <div class="reg-jurisdiction">International · ISO 26262:2018 + ISO 21448 (SOTIF)</div>
+          <h2 class="display-lg">ISO 26262 &amp; SOTIF</h2>
+        </div>
+        <div class="reg-meta">
+          <span class="badge" style="background:var(--bg-raised); color:var(--text-muted); border:0.5px solid var(--border-dim);">Planned</span>
+          <span class="badge badge-amber">Mandatory for automotive AI systems</span>
+          <span class="reg-enforcement">ADAS, autonomous driving, in-vehicle AI decision systems</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.9375rem; color:var(--text-secondary); max-width:720px; line-height:1.7; margin-bottom:24px;">
+        ISO 26262 is the functional safety standard for automotive electrical and electronic systems — mandatory for any AI system making decisions in a vehicle. ISO 21448 (SOTIF — Safety of the Intended Functionality) extends this to AI-specific failures: situations where the system performs as designed but the design itself is insufficient for safety. SOTIF is philosophically identical to Threadledger's core premise — guard presence is not guard sufficiency.
+      </p>
+
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <div class="coverage-label">Hazard analysis (ISO 26262)</div>
+          <h4>Systematic identification of safety-critical risks</h4>
+          <p>Threadledger's L0 formal threat modeling performs exactly the structured hazard analysis ISO 26262 requires — with mathematical verification that the analysis is complete.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">SOTIF — intended functionality</div>
+          <h4>Proving the system does what it's supposed to</h4>
+          <p>SOTIF asks whether a correctly functioning system is safe. Threadledger's 3-check CI pipeline — presence, coverage, integrity — directly addresses SOTIF's requirement to prove behavioural safety, not just control presence.</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-label">Traceability</div>
+          <h4>Requirements to implementation to verification</h4>
+          <p>ISO 26262 mandates full traceability from safety requirements to implementation to test evidence. Threadledger's 4-layer chain — model to code to CI to audit log — is that traceability chain.</p>
+        </div>
+      </div>
+
+      <div class="overlap-note">
+        <strong style="color:var(--cyan);">SOTIF and Threadledger share the same insight:</strong> a control that exists but is bypassed is not a control. ISO 26262 and SOTIF demand proof of sufficiency, not just presence — exactly what Threadledger's verification engine provides.
+      </div>
+
+      <div class="roadmap-callout" style="margin-top:16px;">
+        <span style="font-size:1.1rem;">📋</span>
+        <div><strong>Planned:</strong> ISO 26262 / SOTIF profile is on the roadmap for automotive AI deployments. Contact us if you are building AI systems for ADAS or autonomous vehicle applications.</div>
       </div>
     </section>
 
