@@ -1,6 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Nav CSS: self-contained, no external dependency -->
+  <style>
+    /* Nav bar */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; display: flex; align-items: center;
+      background: rgba(250,249,247,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid rgba(0,0,0,0.07);
+    }
+    [data-theme="dark"] .nav { background: rgba(8,12,20,0.92); }
+    .nav-inner {
+      display: flex; align-items: center;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; flex-shrink: 0; }
+    .nav-logo-mark { width: 30px; height: 30px; background: #1D9E75; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: 700; color: #fff; }
+    [data-theme="dark"] .nav-logo-mark { background: #00e0ff; color: #080c14; }
+    .nav-logo-text { font-family: monospace; font-weight: 700; font-size: 0.95rem; }
+    /* Desktop links */
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; margin: 0 auto 0 24px; padding: 0; }
+    .nav-links a, .nav-dropdown-trigger {
+      color: #5a5a52; text-decoration: none; font-size: 0.78rem; font-weight: 500;
+      padding: 5px 9px; border-radius: 4px; transition: all 0.15s;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .nav-links a, [data-theme="dark"] .nav-dropdown-trigger { color: #8a9bb0; }
+    .nav-links a:hover, .nav-dropdown-trigger:hover { color: #1a1a18; background: #f0ede8; }
+    [data-theme="dark"] .nav-links a:hover, [data-theme="dark"] .nav-dropdown-trigger:hover { color: #e8edf4; background: #162030; }
+    .nav-links a.active { color: #1D9E75; }
+    [data-theme="dark"] .nav-links a.active { color: #00e0ff; }
+    /* Dropdown */
+    .nav-dropdown { position: relative; list-style: none; }
+    .nav-dropdown-trigger { display: inline-flex; align-items: center; gap: 4px; }
+    .nav-dropdown-arrow { font-size: 0.55rem; }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 8px); left: 0; min-width: 200px;
+      background: #faf9f7; border: 0.5px solid rgba(0,0,0,0.1); border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1); padding: 6px;
+      opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: all 0.15s; z-index: 200;
+    }
+    [data-theme="dark"] .nav-dropdown-menu { background: #111927; border-color: rgba(255,255,255,0.1); }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border-radius: 6px; text-decoration: none; }
+    .nav-dropdown-item:hover { background: #f0ede8; }
+    [data-theme="dark"] .nav-dropdown-item:hover { background: #162030; }
+    .nav-dropdown-item-icon { font-size: 0.875rem; flex-shrink: 0; margin-top: 1px; }
+    .nav-dropdown-item-text strong { display: block; font-size: 0.78rem; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
+    [data-theme="dark"] .nav-dropdown-item-text strong { color: #e8edf4; }
+    .nav-dropdown-item-text span { font-size: 0.7rem; color: #999990; line-height: 1.4; }
+    .nav-dropdown-divider { height: 0.5px; background: rgba(0,0,0,0.07); margin: 4px 6px; }
+    /* Right side */
+    .nav-right { display: flex; align-items: center; gap: 8px; margin-left: 12px; flex-shrink: 0; }
+    /* Theme toggle */
+    .theme-toggle {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0ede8; border: 0.5px solid rgba(0,0,0,0.1); border-radius: 999px;
+      padding: 4px 12px 4px 8px; cursor: pointer;
+      font-family: monospace; font-size: 0.65rem; font-weight: 600;
+      color: #5a5a52; letter-spacing: 0.04em; text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    [data-theme="dark"] .theme-toggle { background: #162030; border-color: rgba(255,255,255,0.1); color: #8a9bb0; }
+    /* Hamburger */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 40px; height: 40px; background: none; border: none;
+      cursor: pointer; padding: 8px; border-radius: 4px; margin-left: auto; flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 2px; background: #1a1a18;
+      border-radius: 2px; transition: all 0.22s ease; transform-origin: center;
+    }
+    [data-theme="dark"] .nav-hamburger span { background: #e8edf4; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* Mobile drawer — HIDDEN by default using display:none */
+    .nav-mobile {
+      display: none; /* JS adds .open which changes to block */
+      position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+      background: #faf9f7; border-bottom: 0.5px solid rgba(0,0,0,0.07);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 12px 0 16px;
+      animation: slideDown 0.2s ease;
+    }
+    [data-theme="dark"] .nav-mobile { background: #0d1421; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-mobile a {
+      display: block; padding: 11px 24px; color: #5a5a52; text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; transition: all 0.15s;
+    }
+    [data-theme="dark"] .nav-mobile a { color: #8a9bb0; }
+    .nav-mobile a:hover { color: #1a1a18; background: #f0ede8; }
+    [data-theme="dark"] .nav-mobile a:hover { color: #e8edf4; background: #162030; }
+    .nav-mobile a.active { color: #1D9E75; }
+    [data-theme="dark"] .nav-mobile a.active { color: #00e0ff; }
+    .nav-mobile-group {
+      padding: 10px 24px 4px; font-family: monospace; font-size: 0.62rem;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999990;
+    }
+    .nav-mobile-sub { padding-left: 36px !important; font-size: 0.85rem !important; }
+    .nav-mobile-divider { height: 0.5px; background: rgba(0,0,0,0.07); margin: 6px 24px; }
+    [data-theme="dark"] .nav-mobile-divider { background: rgba(255,255,255,0.06); }
+    /* Mobile breakpoint */
+    @media (max-width: 900px) {
+      .nav-links   { display: none !important; }
+      .nav-right   { display: none !important; }
+      .nav-hamburger { display: flex !important; }
+    }
+  </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Threadledger — AI Agent Security</title>
@@ -186,15 +300,6 @@
       .threat-grid { grid-template-columns: 1fr; }
     }
   </style>
-
-  <!-- Critical mobile nav CSS -->
-  <style>
-    @media (max-width: 900px) {
-      .nav-links     { display: none !important; }
-      .nav-right     { display: none !important; }
-      .nav-hamburger { display: flex !important; }
-    }
-  </style>
 </head>
 <body>
 
@@ -209,33 +314,22 @@
         <li class="nav-dropdown">
           <button class="nav-dropdown-trigger">Solutions <span class="nav-dropdown-arrow">▼</span></button>
           <div class="nav-dropdown-menu">
-            <a class="nav-dropdown-item" href="regulations.html">
-              <span class="nav-dropdown-item-icon">📋</span>
-              <span class="nav-dropdown-item-text"><strong>Regulations &amp; Frameworks</strong><span>26 safety &amp; compliance profiles</span></span>
-            </a>
+            <a class="nav-dropdown-item" href="regulations.html"><span class="nav-dropdown-item-icon">📋</span><span class="nav-dropdown-item-text"><strong>Regulations &amp; Frameworks</strong><span>26 safety &amp; compliance profiles</span></span></a>
             <div class="nav-dropdown-divider"></div>
-            <a class="nav-dropdown-item" href="ai-agent-security.html">
-              <span class="nav-dropdown-item-icon">🤖</span>
-              <span class="nav-dropdown-item-text"><strong>AI Agent Security</strong><span>Formally bounded agent deployments</span></span>
-            </a>
+            <a class="nav-dropdown-item" href="ai-agent-security.html"><span class="nav-dropdown-item-icon">🤖</span><span class="nav-dropdown-item-text"><strong>AI Agent Security</strong><span>Formally bounded agent deployments</span></span></a>
           </div>
         </li>
         <li><a href="../for-ciso.html">For CISOs &amp; DPOs</a></li>
         <li><a href="../for-devops.html">For DevSecOps</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="../index.html#pricing">Pricing</a></li>
-        <li><a href="mailto:contact@threadledger.io">Contact</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#5c3f3332283d3f281c28342e393d383039383b392e723533">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
-        <button class="theme-toggle" aria-label="Switch to dark mode">
-          <span class="theme-toggle-icon">🌙</span>
-          <span class="theme-toggle-label">Dark</span>
-        </button>
+        <button class="theme-toggle" aria-label="Switch to dark mode"><span class="theme-toggle-icon">🌙</span><span class="theme-toggle-label">Dark</span></button>
       </div>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
   <div class="nav-mobile" id="nav-mobile">
@@ -248,44 +342,12 @@
     <a href="../for-devops.html">For DevSecOps</a>
     <a href="about.html">About</a>
     <a href="../index.html#pricing">Pricing</a>
-    <a href="mailto:contact@threadledger.io">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#d1b2bebfa5b0b2a591a5b9a3b4b0b5bdb4b5b6b4a3ffb8be">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="request-demo.html" style="color:var(--cyan);font-weight:600;">Request Demo →</a>
-    <div style="padding:8px 24px 12px;">
-      <button class="theme-toggle" style="width:auto;">
-        <span class="theme-toggle-icon">🌙</span>
-        <span class="theme-toggle-label">Dark mode</span>
-      </button>
-    </div>
   </div>
 
-  <a href="regulations.html" class="nav-mobile-sub">📋 Regulations &amp; Frameworks</a>
-    <a href="ai-agent-security.html" class="nav-mobile-sub">🤖 AI Agent Security</a>
-    <div class="nav-mobile-divider"></div>
-    <a href="../for-ciso.html">For CISOs &amp; DPOs</a>
-    <a href="../for-devops.html">For DevSecOps</a>
-    <a href="about.html">About</a>
-    <a href="../index.html#pricing">Pricing</a>
-    <a href="mailto:contact@threadledger.io">Contact</a>
-    <div class="nav-mobile-divider"></div>
-    <a href="request-demo.html" style="color:var(--cyan);font-weight:600;">Request Demo →</a>
-    <div style="padding:8px 24px 12px;"><button class="theme-toggle" onclick="void(0)" style="width:auto;"><span class="theme-toggle-icon">🌙</span><span class="theme-toggle-label">Dark mode</span></button></div>
-  </div>
-
-
-    <a href="regulations.html" class="nav-mobile-sub">Regulations & Frameworks</a>
-    <a href="ai-agent-security.html" class="nav-mobile-sub">AI Agent Security</a>
-    <div class="nav-mobile-divider"></div>
-    <a href="for-ciso.html">For CISOs & DPOs</a>
-    <a href="for-devops.html">For DevSecOps</a>
-    <a href="about.html">About</a>
-    <a href="../index.html#pricing">Pricing</a>
-    <a href="mailto:contact@threadledger.io">Contact</a>
-    <div class="nav-mobile-divider"></div>
-    <a href="request-demo.html" style="color:var(--cyan); font-weight:600; padding:11px 24px; display:block; text-decoration:none; font-size:0.9rem;">Request Demo →</a>
-  </div>
-
-  <!-- Hero -->
+<!-- Hero -->
   <section class="page-hero">
     <div class="container">
       <div class="section-label">AI Agent Security</div>
@@ -652,7 +714,7 @@
           </p>
         </div>
         <div style="flex-shrink:0; text-align:center;">
-          <a href="mailto:contact@threadledger.io" class="btn btn-primary btn-lg" style="white-space:nowrap;">
+          <a href="/cdn-cgi/l/email-protection#e1828e8f95808295a19589938480858d8485868493cf888e" class="btn btn-primary btn-lg" style="white-space:nowrap;">
             Request under NDA →
           </a>
           <p style="font-size:0.72rem; color:var(--text-muted); margin-top:8px; font-family:var(--font-mono);">NDA sent within 1 business day</p>
@@ -773,10 +835,34 @@
           m.classList.remove('open');
         }
       });
-      m.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          h.classList.remove('open');
-          m.classList.remove('open');
+
+  <script>
+    (function(){
+      var h=document.getElementById('nav-hamburger');
+      var m=document.getElementById('nav-mobile');
+      if(!h||!m)return;
+      h.addEventListener('click',function(e){e.stopPropagation();var o=h.classList.toggle('open');m.classList.toggle('open',o);});
+      document.addEventListener('click',function(e){if(!h.contains(e.target)&&!m.contains(e.target)){h.classList.remove('open');m.classList.remove('open');}});
+      m.querySelectorAll('a').forEach(function(a
+  <script>
+    (function(){
+      var h=document.getElementById('nav-hamburger');
+      var m=document.getElementById('nav-mobile');
+      if(!h||!m)return;
+      h.addEventListener('click',function(e){
+        e.stopPropagation();
+        var isOpen = m.style.display==='block';
+        if(isOpen){ m.style.display='none'; h.classList.remove('open'); }
+        else { m.style.display='block'; h.classList.add('open'); }
+      });
+      document.addEventListener('click',function(e){
+        if(!h.contains(e.target)&&!m.contains(e.target)){
+          m.style.display='none'; h.classList.remove('open');
+        }
+      });
+      m.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click',function(){
+          m.style.display='none'; h.classList.remove('open');
         });
       });
     })();
