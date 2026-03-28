@@ -1126,9 +1126,69 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   <!-- ── Pricing ── -->
   <section class="section" id="pricing">
     <div class="container">
-      <div class="section-label">Pricing</div>
-      <h2 class="display-lg" style="margin-bottom:10px;">Open core, transparent pricing</h2>
-      <p style="color:var(--text-secondary);max-width:440px;font-size:0.9375rem;line-height:1.65;">Start with the community platform. Scale as your compliance needs grow.</p>
+
+      <!-- Pilot Programme — primary entry point -->
+      <div class="section-label">How to get started</div>
+      <h2 class="display-lg" style="margin-bottom:10px;">Q2 2026 Design Partner Pilot</h2>
+      <p style="color:var(--text-secondary);max-width:520px;font-size:0.9375rem;line-height:1.65;">
+        We are running a small cohort of EU fintech teams ahead of August 2026 enforcement.
+        Hands-on, founder-led. Capped at 10 teams.
+      </p>
+
+      <!-- Pilot card -->
+      <div style="margin: 36px 0 56px; display: flex; justify-content: center;">
+        <div class="price-card featured" style="max-width: 560px; width: 100%;">
+          <div class="featured-badge">Q2 2026 · Limited to 10 teams</div>
+          <div class="price-plan">Design Partner Pilot</div>
+          <div style="display:flex; align-items:baseline; gap:6px; margin: 10px 0 4px;">
+            <div class="price-amount"><sup>€</sup>2,500</div>
+            <div class="price-period">one-time · 8 weeks</div>
+          </div>
+          <div class="price-desc" style="margin-bottom: 20px;">
+            A structured, founder-led engagement on your codebase.
+            Pilot fee is credited against your first quarter of subscription on conversion.
+          </div>
+          <ul class="price-features" style="margin-bottom: 24px;">
+            <li><span class="feature-check">✓</span> Full 4-layer platform on your own codebase</li>
+            <li><span class="feature-check">✓</span> Formally verified threat model for your AI system</li>
+            <li><span class="feature-check">✓</span> Auto-generated compliance guards + CI integration</li>
+            <li><span class="feature-check">✓</span> 3-tier test pipeline — presence, path coverage, bypass detection</li>
+            <li><span class="feature-check">✓</span> Regulator-ready 4-layer evidence package</li>
+            <li><span class="feature-check">✓</span> On-chain immutable audit trail</li>
+            <li><span class="feature-check">✓</span> Direct access to the founding team throughout</li>
+          </ul>
+
+          <!-- Week-by-week timeline -->
+          <div style="background:var(--bg-deep);border-radius:10px;padding:18px 20px;margin-bottom:24px;border:0.5px solid var(--border-dim);">
+            <div style="font-family:var(--font-mono);font-size:0.67rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:14px;">8-week programme</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:0.8125rem;line-height:1.5;">
+              <span style="font-family:var(--font-mono);color:var(--cyan);white-space:nowrap;">Wk 1–2</span>
+              <span style="color:var(--text-secondary);">Threat model &amp; OCL invariants — formally verified against your AI system scope</span>
+              <span style="font-family:var(--font-mono);color:var(--cyan);white-space:nowrap;">Wk 3–4</span>
+              <span style="color:var(--text-secondary);">Code generation &amp; IDE integration — compliance guards live in your environment</span>
+              <span style="font-family:var(--font-mono);color:var(--cyan);white-space:nowrap;">Wk 5–6</span>
+              <span style="color:var(--text-secondary);">CI pipeline — 3-tier compliance gate running on your real codebase</span>
+              <span style="font-family:var(--font-mono);color:var(--cyan);white-space:nowrap;">Wk 7–8</span>
+              <span style="color:var(--text-secondary);">Evidence package — 4-layer regulator-ready proof, board-presentable</span>
+            </div>
+          </div>
+
+          <a href="mailto:contact@seirios.ai?subject=Pilot%20Programme%20%E2%80%94%20Q2%202026" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.9375rem;">
+            Request a pilot spot →
+          </a>
+          <p style="text-align:center;margin-top:12px;font-size:0.72rem;color:var(--text-muted);font-family:var(--font-mono);">
+            Spots fill on a first-come basis. August 2026 enforcement means Q2 is the last viable window.
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider + subscription tiers -->
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:36px;">
+        <div style="flex:1;height:0.5px;background:var(--border-dim);"></div>
+        <span style="font-family:var(--font-mono);font-size:0.67rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);white-space:nowrap;">Post-pilot subscription tiers</span>
+        <div style="flex:1;height:0.5px;background:var(--border-dim);"></div>
+      </div>
+
       <div class="pricing-grid">
         <div class="price-card">
           <div class="price-plan">Starter</div>
@@ -1143,10 +1203,9 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <li style="opacity:0.4"><span class="feature-check">—</span> Custom risk models</li>
             <li style="opacity:0.4"><span class="feature-check">—</span> Full compliance agent</li>
           </ul>
-          <a href="/cdn-cgi/l/email-protection#6f0c00011b0e0c1b2f1b071d0a0e0b030a0b080a1d410600" class="btn btn-outline" style="width:100%;justify-content:center;">Get started</a>
+          <a href="mailto:contact@seirios.ai" class="btn btn-outline" style="width:100%;justify-content:center;">Get started</a>
         </div>
-        <div class="price-card featured">
-          <div class="featured-badge">Most Popular</div>
+        <div class="price-card">
           <div class="price-plan">Pro</div>
           <div class="price-amount"><sup>$</sup>999</div>
           <div class="price-period">per month</div>
@@ -1159,7 +1218,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <li><span class="feature-check">✓</span> Extended compliance testing</li>
             <li style="opacity:0.4"><span class="feature-check">—</span> Full compliance agent + SLA</li>
           </ul>
-          <a href="/cdn-cgi/l/email-protection#791a16170d181a0d390d110b1c181d151c1d1e1c0b571016" class="btn btn-primary" style="width:100%;justify-content:center;">Start with Pro</a>
+          <a href="mailto:contact@seirios.ai" class="btn btn-outline" style="width:100%;justify-content:center;">Contact us</a>
         </div>
         <div class="price-card">
           <div class="price-plan">Enterprise</div>
@@ -1174,9 +1233,10 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <li><span class="feature-check">✓</span> On-chain audit trail</li>
             <li><span class="feature-check">✓</span> Regulator submission exports</li>
           </ul>
-          <a href="/cdn-cgi/l/email-protection#85e6eaebf1e4e6f1c5f1edf7e0e4e1e9e0e1e2e0f7abecea" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to us</a>
+          <a href="mailto:contact@seirios.ai" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to us</a>
         </div>
       </div>
+
     </div>
   </section>
 
