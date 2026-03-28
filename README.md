@@ -1,6 +1,6 @@
 # Seirios Website
 
-**Brand:** Seirios (ThreatLedger B.V.)  
+**Brand:** Seirios (Seirios B.V.)  
 **Stack:** Pure HTML/CSS/JS — zero build step, zero dependencies, zero cost.  
 **Slogan:** AI you can prove.
 
@@ -14,7 +14,7 @@
 - Dark bg void: `#080c14` → deep space navy `#0d1117`
 - Slogan: "Provable AI Compliance" → "AI you can prove."
 - Domain ref: hellothreadledger.io → seirios.ai
-- Legal entity: ThreatLedger B.V. preserved in footer
+- Legal entity: Seirios B.V. preserved in footer
 
 ## File Structure
 
