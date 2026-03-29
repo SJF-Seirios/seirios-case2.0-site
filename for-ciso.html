@@ -653,8 +653,8 @@ em.accent { font-style: italic; color: var(--text-secondary); }
     .faq-q { font-family:var(--font-mono); font-size:0.8125rem; color:var(--text-primary); margin-bottom:7px; }
     :root .faq-q { font-family:var(--font-body); font-weight:600; font-size:0.9rem; }
     .faq-a { font-size:0.8125rem; color:var(--text-secondary); line-height:1.65; }
-    .cta-banner { border:0.5px solid var(--border-accent); border-radius:var(--radius-xl); padding:52px 36px; text-align:center; position:relative; overflow:hidden; background:var(--bg-surface); }
-    [data-theme="dark"] .cta-banner { background:linear-gradient(135deg,rgba(0,224,255,0.05) 0%,rgba(0,255,136,0.02) 100%); }
+    .cta-banner { border:1px solid var(--border-accent); border-radius:var(--radius-xl); padding:52px 36px; text-align:center; position:relative; overflow:hidden; background:var(--bg-raised); box-shadow:0 2px 24px rgba(0,0,0,0.06); }
+    [data-theme="dark"] .cta-banner { background:#111d2e; border-color:rgba(0,224,255,0.25); box-shadow:0 0 40px rgba(0,224,255,0.06), inset 0 0 0 0.5px rgba(0,224,255,0.12); }
     .cta-banner::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:200px; height:0.5px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); }
     @media (max-width:900px) { .evidence-chain { grid-template-columns:1fr 1fr; } .pain-grid { grid-template-columns:1fr; } }
     @media (max-width:600px) { .evidence-chain { grid-template-columns:1fr; } }
@@ -699,7 +699,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         <li><a href="for-devops.html">For DevSecOps</a></li>
         <li><a href="pages/about.html">About</a></li>
         <li><a href="index.html#pricing">Pricing</a></li>
-        <li><a href="mailto:info@seirios.xyz">Contact</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#492a26273d282a3d093d213b2c282d252c2d2e2c3b672026">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="pages/request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -719,7 +719,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
     <a href="for-devops.html">For DevSecOps</a>
     <a href="pages/about.html">About</a>
     <a href="index.html#pricing">Pricing</a>
-    <a href="mailto:info@seirios.xyz">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#e0838f8e94818394a09488928581848c8584878592ce898f">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="pages/request-demo.html" style="color:var(--cyan);font-weight:600;">Request Demo →</a>
     <div class="nav-mobile-divider"></div>
@@ -744,7 +744,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       </p>
       <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;">
         <a href="index.html#request-demo" class="btn btn-primary btn-lg">Request Demo →</a>
-        <a href="mailto:info@seirios.xyz" class="btn btn-outline btn-lg">Talk to us</a>
+        <a href="/cdn-cgi/l/email-protection#34575b5a4055574074405c465155505851505351461a5d5b" class="btn btn-outline btn-lg">Talk to us</a>
       </div>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <span class="badge badge-amber" style="padding:6px 12px;">⚡ Aug 2026 — EU AI Act HIGH-risk enforcement</span>
@@ -798,7 +798,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
           <div style="width:56px;height:56px;background:var(--cyan-dim);border:0.5px solid var(--border-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent var(--cyan);margin-left:3px;"></div></div>
           <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);">Demo video coming soon</span>
-          <a href="mailto:info@seirios.xyz" class="btn btn-primary btn-sm">Request live demo instead →</a>
+          <a href="/cdn-cgi/l/email-protection#fd9e9293899c9e89bd89958f989c999198999a988fd39492" class="btn btn-primary btn-sm">Request live demo instead →</a>
         </div>
       </div>
     </div>
@@ -821,7 +821,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       <div class="cta-banner">
         <h2 class="display-md" style="margin-bottom:10px;">August 2026 is <span style="color:var(--amber);">closer than it looks</span>.</h2>
         <p style="color:var(--text-secondary); max-width:400px; margin:0 auto 22px; line-height:1.65;">Pilot customers are welcome now. We work with you to build your risk model and validate the evidence chain against your AI system before enforcement hits.</p>
-        <a href="mailto:info@seirios.xyz" class="btn btn-primary btn-lg">Apply for Pilot Programme →</a>
+        <a href="/cdn-cgi/l/email-protection#4a2925243e2b293e0a3e22382f2b2e262f2e2d2f38642325" class="btn btn-primary btn-lg">Apply for Pilot Programme →</a>
       </div>
     </div>
   </section>
@@ -861,4 +861,9 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       hamburger.addEventListener('click', () => {
         const open = hamburger.classList.toggle('open');
         mobileNav.classList.toggle('open', open);
-        hamburger.setAttribute('aria-expanded', o
+        hamburger.setAttribute('aria-expanded', open);
+      });
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+          hamburger.classList.remove('open');
+     
