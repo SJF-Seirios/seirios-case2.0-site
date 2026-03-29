@@ -2257,41 +2257,37 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 
   <footer class="footer">
     <div class="container">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
-        <div style="display:flex; align-items:center; gap:9px;">
+      <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:9px; flex-shrink:0;">
           <svg class="nav-logo-mark seirios-mark" width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Seirios">
         <!-- Outer glow ring -->
         <circle cx="16" cy="16" r="14" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.15"/>
         <circle cx="16" cy="16" r="10" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.2"/>
-        <!-- 8-point star cross -->
         <line x1="8.5" y1="16" x2="23.5" y2="16" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
         <line x1="16" y1="8.5" x2="16" y2="23.5" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- Diagonals -->
         <line x1="11.2" y1="11.2" x2="20.8" y2="20.8" stroke="#4a9eff" stroke-width="1.0" stroke-linecap="round" opacity="0.35"/>
         <line x1="20.8" y1="11.2" x2="11.2" y2="20.8" stroke="#4a9eff" stroke-width="1.0" stroke-linecap="round" opacity="0.35"/>
-        <!-- Core -->
         <circle cx="16" cy="16" r="2.5" fill="#1a3d6e" stroke="#4a9eff" stroke-width="0.25" opacity="0.9"/>
         <circle cx="16" cy="16" r="1" fill="#8bc4ff"/>
         <circle cx="16" cy="16" r="0.4" fill="#ffffff"/>
-        <!-- Tick -->
         <path d="M15.2 16 L15.8 16.6 L17 15.3" fill="none" stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-          <span style="font-family:var(--font-mono); font-weight:600;">Seirios</span>
-          <span style="color:var(--text-muted); font-size:0.78rem; font-family:var(--font-mono);">· Poletek Solutions B.V. · Rotterdam · Dutch law</span>
+          <span style="font-family:var(--font-mono); font-weight:600; font-size:0.9rem;">Seirios</span>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#ffffff; letter-spacing:0.08em; margin-left:4px;">AI you can prove.</span>
         </div>
-        <div style="display:flex; gap:18px;">
-          <a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Home</a>
-          <a href="../for-ciso.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">For CISOs &amp; DPOs</a>
-          <a href="mailto:info@seirios.xyz">info@seirios.xyz</a>
+        <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+          <a href="../pages/regulations.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Regulations</a>
+          <a href="../pages/ai-agent-security.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Agent Security</a>
+          <a href="../for-ciso.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">For CISOs &amp; DPOs</a>
+          <a href="../for-devops.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">For DevSecOps</a>
+          <a href="../pages/request-demo.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Request Demo</a>
+          <a href="mailto:info@seirios.xyz" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Contact</a>
         </div>
+      </div>
+      <div style="height:0.5px; background:var(--border-dim); margin-bottom:14px;"></div>
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 Polecat Business &amp; Technology Advice B.V., KvK 61395323 · Rotterdam · Dutch law</span>
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">info@seirios.xyz</span>
       </div>
     </div>
   </footer>
-
-  <script>
-    // Highlight active tab on scroll
-    const sections = document.querySelectorAll('.reg-section');
-    const tabs = document.querySelectorAll('.tab');
-    const observer = new IntersectionObserver((entries) => 
-  <script>
-    const hamburge

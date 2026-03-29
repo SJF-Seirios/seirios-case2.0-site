@@ -978,7 +978,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             </p>
             <div style="padding:16px 20px; background:var(--bg-card); border:0.5px solid var(--border-dim); border-left:3px solid var(--cyan); border-radius:0 var(--radius-md) var(--radius-md) 0;">
               <p style="font-size:0.8125rem; color:var(--text-secondary); line-height:1.7; margin:0;">
-                The permission boundary is expressed as verifiable constraints — scope limits, audit requirements, input validation rules, credential access rules. Any gap in the design is caught here, before a single line of agent code is written. Technical documentation available under NDA — see below.
+                The permission boundary is expressed as verifiable constraints — scope limits, audit requirements, input validation rules, credential access rules. Any gap in the design is caught here, before a single line of agent code is written.
               </p>
             </div>
           </div>
@@ -1242,26 +1242,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   </section>
 
 
-  <!-- Technical documentation CTA -->
-  <section class="section section-sm" style="background:var(--bg-deep); padding-top:48px; padding-bottom:48px;">
-    <div class="container">
-      <div style="display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; padding:28px 32px; background:var(--bg-card); border:0.5px solid var(--border-accent); border-radius:var(--radius-xl);">
-        <div>
-          <div class="section-label" style="margin-bottom:10px;">Technical documentation</div>
-          <h3 class="display-md" style="margin-bottom:8px;">Want the full technical specification?</h3>
-          <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.65; max-width:520px;">
-            The complete technical documentation — formal model structure, auto-generated guard architecture, CI pipeline implementation, and MCP integration details — is available under NDA. Covers everything shown here in full engineering depth, plus the full 4-layer implementation guide for agent deployments.
-          </p>
-        </div>
-        <div style="flex-shrink:0; text-align:center;">
-          <a href="mailto:info@seirios.xyz" class="btn btn-primary btn-lg" style="white-space:nowrap;">
-            Request under NDA →
-          </a>
-          <p style="font-size:0.72rem; color:var(--text-muted); margin-top:8px; font-family:var(--font-mono);">NDA sent within 1 business day</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- CTA -->
   <section class="section" style="background:var(--bg-deep); padding-top:56px; padding-bottom:64px;">
@@ -1285,42 +1266,37 @@ em.accent { font-style: italic; color: var(--text-secondary); }
 
   <footer class="footer">
     <div class="container">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
-        <div style="display:flex; align-items:center; gap:9px;">
+      <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:9px; flex-shrink:0;">
           <svg class="nav-logo-mark seirios-mark" width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Seirios">
         <!-- Outer glow ring -->
         <circle cx="16" cy="16" r="14" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.15"/>
         <circle cx="16" cy="16" r="10" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.2"/>
-        <!-- 8-point star cross -->
         <line x1="8.5" y1="16" x2="23.5" y2="16" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
         <line x1="16" y1="8.5" x2="16" y2="23.5" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- Diagonals -->
         <line x1="11.2" y1="11.2" x2="20.8" y2="20.8" stroke="#4a9eff" stroke-width="1.0" stroke-linecap="round" opacity="0.35"/>
         <line x1="20.8" y1="11.2" x2="11.2" y2="20.8" stroke="#4a9eff" stroke-width="1.0" stroke-linecap="round" opacity="0.35"/>
-        <!-- Core -->
         <circle cx="16" cy="16" r="2.5" fill="#1a3d6e" stroke="#4a9eff" stroke-width="0.25" opacity="0.9"/>
         <circle cx="16" cy="16" r="1" fill="#8bc4ff"/>
         <circle cx="16" cy="16" r="0.4" fill="#ffffff"/>
-        <!-- Tick -->
         <path d="M15.2 16 L15.8 16.6 L17 15.3" fill="none" stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-          <span style="font-family:var(--font-mono); font-weight:600;">Seirios</span>
-          <span style="color:var(--text-muted); font-size:0.78rem; font-family:var(--font-mono);">· Poletek Solutions B.V. · Rotterdam · Dutch law</span>
+          <span style="font-family:var(--font-mono); font-weight:600; font-size:0.9rem;">Seirios</span>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#ffffff; letter-spacing:0.08em; margin-left:4px;">AI you can prove.</span>
         </div>
-        <div style="display:flex; gap:18px;">
-          <a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Home</a>
-          <a href="regulations.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Regulations</a>
-          <a href="request-demo.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem;">Request Demo</a>
-          <a href="/cdn-c
-  <script>
-    const hamburger = document.getElementById('nav-hamburger');
-    const mobileNav = document.getElementById('nav-mobile');
-    if (hamburger && mobileNav) {
-      hamburger.addEventListener('click', () => {
-        const open = hamburger.classList.toggle('open');
-        mobileNav.classList.toggle('open', open);
-        hamburger.setAttribute('aria-expanded', open);
-      });
-      document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-          hamburger.classL
+        <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+          <a href="../pages/regulations.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Regulations</a>
+          <a href="../pages/ai-agent-security.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Agent Security</a>
+          <a href="../for-ciso.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">For CISOs &amp; DPOs</a>
+          <a href="../for-devops.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">For DevSecOps</a>
+          <a href="../pages/request-demo.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Request Demo</a>
+          <a href="mailto:info@seirios.xyz" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Contact</a>
+        </div>
+      </div>
+      <div style="height:0.5px; background:var(--border-dim); margin-bottom:14px;"></div>
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 Polecat Business &amp; Technology Advice B.V., KvK 61395323 · Rotterdam · Dutch law</span>
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">info@seirios.xyz</span>
+      </div>
+    </div>
+  </footer>

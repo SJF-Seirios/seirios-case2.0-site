@@ -746,6 +746,28 @@ em.accent { font-style: italic; color: var(--text-secondary); }
     .cross   { color: var(--text-muted); }
     .partial { color: var(--amber); }
 
+    /* ── Mobile card layout for comparison table ── */
+    .comp-cards { display: none; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .comp-card { background: var(--bg-card); border: 0.5px solid var(--border-dim); border-radius: var(--radius-lg); padding: 16px 18px; }
+    .comp-card.ours { border-color: var(--border-accent); background: var(--bg-surface); }
+    .comp-card-name { font-family: var(--font-mono); font-weight: 600; font-size: 0.875rem; margin-bottom: 12px; color: var(--text-primary); }
+    .comp-card.ours .comp-card-name { color: var(--green); }
+    [data-theme="dark"] .comp-card.ours .comp-card-name { color: var(--cyan); }
+    .comp-card-features { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; }
+    .comp-card-feature { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: var(--text-secondary); }
+    .comp-card-feature .check { font-size: 0.72rem; }
+    .comp-card-feature .cross { font-size: 0.72rem; }
+    .comp-card-feature .partial { font-size: 0.72rem; }
+
+    /* Show table on desktop, cards on mobile */
+    @media (max-width: 700px) {
+      .comp-table { display: none; }
+      .comp-cards { display: flex; }
+    }
+    @media (min-width: 701px) {
+      .comp-cards { display: none; }
+    }
+
     /* ── Pricing ── */
     .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
     .price-card {
@@ -857,7 +879,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         <li><a href="for-devops.html">For DevSecOps</a></li>
         <li><a href="pages/about.html">About</a></li>
         <li><a href="index.html#pricing">Pricing</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#e2818d8c96838196a2968a908783868e8786858790cc8b8d">Contact</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#ed84838b82ad9e88849f84829ec3959497">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="pages/request-demo.html" class="btn btn-primary btn-sm">Request Demo →</a>
@@ -877,7 +899,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
     <a href="for-devops.html">For DevSecOps</a>
     <a href="pages/about.html">About</a>
     <a href="index.html#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#e3808c8d97828097a3978b918682878f8687848691cd8a8c">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#1970777f76596a7c706b70766a37616063">Contact</a>
     <div class="nav-mobile-divider"></div>
     <a href="pages/request-demo.html" style="color:var(--cyan);font-weight:600;">Request Demo →</a>
     <div class="nav-mobile-divider"></div>
@@ -1080,6 +1102,71 @@ em.accent { font-style: italic; color: var(--text-secondary); }
           </tr>
         </tbody>
       </table>
+
+      <!-- Mobile card layout — hidden on desktop via CSS -->
+      <div class="comp-cards" aria-label="Competitor comparison">
+
+        <div class="comp-card ours">
+          <div class="comp-card-name">✦ Seirios</div>
+          <div class="comp-card-features">
+            <div class="comp-card-feature"><span class="check">✓</span> Formal Risk Verification</div>
+            <div class="comp-card-feature"><span class="check">✓</span> Auto-Generated Controls</div>
+            <div class="comp-card-feature"><span class="check">✓</span> Immutable Audit Trail</div>
+            <div class="comp-card-feature"><span class="check">✓</span> Developer Guidance</div>
+            <div class="comp-card-feature"><span class="check">✓</span> EU AI Act Ready</div>
+            <div class="comp-card-feature"><span class="check">✓</span> Continuous Testing</div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-name">OneTrust</div>
+          <div class="comp-card-features">
+            <div class="comp-card-feature"><span class="cross">✗</span> Formal Risk Verification</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Auto-Generated Controls</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Immutable Audit Trail</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Developer Guidance</div>
+            <div class="comp-card-feature"><span class="partial">~</span> EU AI Act Ready</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Continuous Testing</div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-name">CrowdStrike</div>
+          <div class="comp-card-features">
+            <div class="comp-card-feature"><span class="cross">✗</span> Formal Risk Verification</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Auto-Generated Controls</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Immutable Audit Trail</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Developer Guidance</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> EU AI Act Ready</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Continuous Testing</div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-name">GitHub Copilot</div>
+          <div class="comp-card-features">
+            <div class="comp-card-feature"><span class="cross">✗</span> Formal Risk Verification</div>
+            <div class="comp-card-feature"><span class="partial">~</span> Auto-Generated Controls</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Immutable Audit Trail</div>
+            <div class="comp-card-feature"><span class="check">✓</span> Developer Guidance</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> EU AI Act Ready</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Continuous Testing</div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-name">Fiddler AI</div>
+          <div class="comp-card-features">
+            <div class="comp-card-feature"><span class="cross">✗</span> Formal Risk Verification</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Auto-Generated Controls</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Immutable Audit Trail</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> Developer Guidance</div>
+            <div class="comp-card-feature"><span class="cross">✗</span> EU AI Act Ready</div>
+            <div class="comp-card-feature"><span class="partial">~</span> Continuous Testing</div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -1198,7 +1285,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <li style="opacity:0.4"><span class="feature-check">—</span> Custom risk models</li>
             <li style="opacity:0.4"><span class="feature-check">—</span> Full compliance agent</li>
           </ul>
-          <a href="/cdn-cgi/l/email-protection#c8aba7a6bca9abbc88bca0baada9aca4adacafadbae6a1a7" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to us</a>
+          <a href="/cdn-cgi/l/email-protection#21484f474e6152444853484e520f59585b" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to us</a>
         </div>
         <div class="price-card featured">
           <div class="featured-badge">Most Popular</div>
@@ -1214,7 +1301,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <li><span class="feature-check">✓</span> Extended compliance testing</li>
             <li style="opacity:0.4"><span class="feature-check">—</span> Full compliance agent + SLA</li>
           </ul>
-          <a href="/cdn-cgi/l/email-protection#e4878b8a90858790a4908c96818580888180838196ca8d8b" class="btn btn-primary" style="width:100%;justify-content:center;">Talk to us</a>
+          <a href="/cdn-cgi/l/email-protection#026b6c646d4271676b706b6d712c7a7b78" class="btn btn-primary" style="width:100%;justify-content:center;">Talk to us</a>
         </div>
         <div class="price-card">
           <div class="price-plan">Enterprise</div>
@@ -1229,7 +1316,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <li><span class="feature-check">✓</span> On-chain audit trail</li>
             <li><span class="feature-check">✓</span> Regulator submission exports</li>
           </ul>
-          <a href="/cdn-cgi/l/email-protection#f4979b9a80959780b4809c86919590989190939186da9d9b" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to us</a>
+          <a href="/cdn-cgi/l/email-protection#177e7971785764727e657e7864396f6e6d" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to us</a>
         </div>
       </div>
     </div>
@@ -1247,12 +1334,11 @@ em.accent { font-style: italic; color: var(--text-secondary); }
           Request a live demo. We run the full compliance pipeline against a real codebase and show you what a regulator-ready evidence package looks like.
         </p>
         <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-          <a href="/cdn-cgi/l/email-protection#771418190316140337031f051216131b1213101205591e18" class="btn btn-primary btn-lg">Request Demo →</a>
+          <a href="pages/request-demo.html" class="btn btn-primary btn-lg">Request Demo →</a>
           <a href="for-ciso.html" class="btn btn-outline btn-lg">For CISOs &amp; DPOs</a>
           <a href="for-devops.html" class="btn btn-outline btn-lg">For DevSecOps</a>
         </div>
         <p style="margin-top:20px;font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">
-          <a href="/cdn-cgi/l/email-protection#e5868a8b91848691a5918d97808481898081828097cb8c8a"><span class="__cf_email__" data-cfemail="3d5e5253495c5e497d49554f585c595158595a584f135452">[email&#160;protected]</span></a> · threadledger.io · Poletek Solutions B.V. · Rotterdam
         </p>
       </div>
     </div>
@@ -1267,17 +1353,13 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         <!-- Outer glow ring -->
         <circle cx="16" cy="16" r="14" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.15"/>
         <circle cx="16" cy="16" r="10" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.2"/>
-        <!-- 8-point star cross -->
         <line x1="8.5" y1="16" x2="23.5" y2="16" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
         <line x1="16" y1="8.5" x2="16" y2="23.5" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- Diagonals -->
         <line x1="11.2" y1="11.2" x2="20.8" y2="20.8" stroke="#4a9eff" stroke-width="1.0" stroke-linecap="round" opacity="0.35"/>
         <line x1="20.8" y1="11.2" x2="11.2" y2="20.8" stroke="#4a9eff" stroke-width="1.0" stroke-linecap="round" opacity="0.35"/>
-        <!-- Core -->
         <circle cx="16" cy="16" r="2.5" fill="#1a3d6e" stroke="#4a9eff" stroke-width="0.25" opacity="0.9"/>
         <circle cx="16" cy="16" r="1" fill="#8bc4ff"/>
         <circle cx="16" cy="16" r="0.4" fill="#ffffff"/>
-        <!-- Tick -->
         <path d="M15.2 16 L15.8 16.6 L17 15.3" fill="none" stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
           <span style="font-family:var(--font-mono); font-weight:600; font-size:0.9rem;">Seirios</span>
@@ -1289,10 +1371,9 @@ em.accent { font-style: italic; color: var(--text-secondary); }
           <a href="for-ciso.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">For CISOs &amp; DPOs</a>
           <a href="for-devops.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">For DevSecOps</a>
           <a href="pages/request-demo.html" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Request Demo</a>
-          <a href="/cdn-cgi/l/email-protection#086b67667c696b7c487c607a6d696c646d6c6f6d7a266167" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;"><span class="__cf_email__" data-cfemail="c7a4a8a9b3a6a4b387b3afb5a2a6a3aba2a3a0a2b5e9aea8">[email&#160;protected]</span></a>
+          <a href="/cdn-cgi/l/email-protection#d9b0b7bfb699aabcb0abb0b6aaf7a1a0a3" style="color:var(--text-muted); text-decoration:none; font-size:0.78rem; white-space:nowrap;">Contact</a>
         </div>
       </div>
       <div style="height:0.5px; background:var(--border-dim); margin-bottom:14px;"></div>
       <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
-        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 Poletek Solutions B.V. · Rotterdam · Dutch law</span>
-        <div styl
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 Polecat Busine
