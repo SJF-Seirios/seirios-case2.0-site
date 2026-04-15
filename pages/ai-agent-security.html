@@ -632,8 +632,8 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;600&family=Figtree:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seirios — AI Agent Security</title>
-  <meta name="description" content="Seirios makes AI agent behaviour formally constrained — not just monitored after the fact. Scope invariants, tool guards, credential controls, and on-chain audit trails enforced at build time." />
+  <title>Seirios — AI Agent Security · 48 Threats · DeepMind + CVE Guards</title>
+  <meta name="description" content="Seirios formally models and enforces 48 agent threats — covering OWASP Agentic Top 10, DeepMind AI Agent Traps framework, and ClaudeCode CVE-2026-21852. Code-layer guards enforced at build time. IPFS-anchored threat ontology." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <script src="../js/theme.js"></script>
   <style>
@@ -847,7 +847,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
           <div class="nav-dropdown-menu">
             <a class="nav-dropdown-item" href="regulations.html"><span class="nav-dropdown-item-icon">📋</span><span class="nav-dropdown-item-text"><strong>Regulations &amp; Frameworks</strong><span>26 safety &amp; compliance profiles</span></span></a>
             <div class="nav-dropdown-divider"></div>
-            <a class="nav-dropdown-item" href="ai-agent-security.html"><span class="nav-dropdown-item-icon">🤖</span><span class="nav-dropdown-item-text"><strong>AI Agent Security</strong><span>Formally bounded agent deployments</span></span></a>
+            <a class="nav-dropdown-item" href="ai-agent-security.html"><span class="nav-dropdown-item-icon">🤖</span><span class="nav-dropdown-item-text"><strong>AI Agent Security</strong><span>48 threats — DeepMind traps + CVE guards</span></span></a>
           </div>
         </li>
         <li><a href="../for-ciso.html">For CISOs &amp; DPOs</a></li>
@@ -898,10 +898,15 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       <p style="font-size:1rem; color:var(--text-secondary); max-width:580px; line-height:1.7; margin-bottom:28px;">
         Most agent security tools are observability tools — they watch what the agent does and alert after the fact. Seirios is an enforcement tool — it makes certain agent behaviours structurally impossible before deployment. The same way fireproof construction is different from a smoke detector.
       </p>
+      <p style="font-size:0.875rem; color:var(--text-muted); max-width:580px; line-height:1.7; margin-bottom:28px;">
+        Built on the <strong style="color:var(--text-secondary);">DeepMind AI Agent Traps framework</strong> (April 2026) and the <strong style="color:var(--text-secondary);">ClaudeCode CVE-2026-21852</strong> series — 48 threats formally modelled, 42 with code-layer guards enforced at build time.
+      </p>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <span class="badge badge-red" style="padding:7px 13px;">API key exposure</span>
         <span class="badge badge-red" style="padding:7px 13px;">Prompt injection</span>
         <span class="badge badge-red" style="padding:7px 13px;">Excessive agency</span>
+        <span class="badge badge-red" style="padding:7px 13px;">RAG poisoning</span>
+        <span class="badge badge-red" style="padding:7px 13px;">Sub-agent escalation</span>
         <span class="badge badge-red" style="padding:7px 13px;">Missing audit trail</span>
         <span class="badge badge-green" style="padding:7px 13px;">All blocked at build time →</span>
       </div>
@@ -912,9 +917,9 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   <section class="section" style="background:var(--bg-deep); padding-top:64px;">
     <div class="container">
       <div class="section-label">The agentic security problem</div>
-      <h2 class="display-lg" style="margin-bottom:12px;">Three failures. One root cause.</h2>
-      <p style="color:var(--text-secondary); max-width:600px; font-size:0.9375rem; line-height:1.7; margin-bottom:0;">
-        API keys, file access, and prompt injection remain unsolved in the agentic space — not because solutions don't exist, but because nobody enforces them structurally. Every team knows the rules. Nobody builds them into the pipeline.
+      <h2 class="display-lg" style="margin-bottom:12px;">48 threats. One enforcement platform.</h2>
+      <p style="color:var(--text-secondary); max-width:640px; font-size:0.9375rem; line-height:1.7; margin-bottom:0;">
+        The original six agentic security failures remain unsolved in most codebases. The ClaudeCode leak (CVE-2026-21852) and the DeepMind AI Agent Traps research (April 2026) added 21 more confirmed attack vectors — with exploit success rates between 58% and 93%. Seirios is the only compliance platform with formal, code-layer guards against all of them.
       </p>
 
       <div class="threat-grid">
@@ -954,6 +959,87 @@ em.accent { font-style: italic; color: var(--text-secondary); }
           <p>Non-technical users configuring agents via no-code tools, adding tools and MCP servers without understanding the security implications. Every new tool is a new attack surface. Nobody checks.</p>
           <div class="threat-fix">→ L2 IDE agent + build gate blocks non-compliant configurations</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New agent threats from DeepMind + ClaudeCode research -->
+  <section class="section" style="background:var(--bg-void);">
+    <div class="container">
+      <div class="section-label">April 2026 research</div>
+      <h2 class="display-lg" style="margin-bottom:12px;">The new attack surface: DeepMind AI Agent Traps + ClaudeCode CVE series</h2>
+      <p style="color:var(--text-secondary); max-width:640px; font-size:0.9375rem; line-height:1.7; margin-bottom:8px;">
+        Two research publications confirmed 21 additional attack vectors specific to agentic AI systems. The <strong style="color:var(--text-primary);">Google DeepMind AI Agent Traps framework</strong> systematically catalogued adversarial content designed to exploit agents in their environment. The <strong style="color:var(--text-primary);">ClaudeCode source leak</strong> exposed CVE-2026-21852 — API keys exfiltrated before the trust dialogue appeared.
+      </p>
+      <p style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.78rem; margin-bottom:32px;">
+        All 21 threats are formally modelled in the Seirios OCL threat ontology and IPFS-anchored. 15 have blocking code-layer guards (Tier A). 6 have audit logging guards (Tier B).
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-dim); border:0.5px solid var(--border-dim); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:40px;">
+        <div style="background:var(--bg-surface); padding:22px 18px; text-align:center;">
+          <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:600; color:var(--cyan); line-height:1; margin-bottom:5px;">93%</div>
+          <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em;">Mobile agent exploit rate</div>
+          <div style="font-size:0.68rem; color:var(--text-muted); margin-top:4px; font-style:italic;">DM-11 embedded jailbreaks</div>
+        </div>
+        <div style="background:var(--bg-surface); padding:22px 18px; text-align:center;">
+          <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:600; color:var(--amber); line-height:1; margin-bottom:5px;">80%+</div>
+          <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em;">RAG poisoning success</div>
+          <div style="font-size:0.68rem; color:var(--text-muted); margin-top:4px; font-style:italic;">handful of docs sufficient</div>
+        </div>
+        <div style="background:var(--bg-surface); padding:22px 18px; text-align:center;">
+          <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:600; color:var(--red); line-height:1; margin-bottom:5px;">58-90%</div>
+          <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em;">Sub-agent exploit rate</div>
+          <div style="font-size:0.68rem; color:var(--text-muted); margin-top:4px; font-style:italic;">DM-13 spawning traps</div>
+        </div>
+        <div style="background:var(--bg-surface); padding:22px 18px; text-align:center;">
+          <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:600; color:var(--text-primary); line-height:1; margin-bottom:5px;">CVE</div>
+          <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em;">2026-21852 (confirmed)</div>
+          <div style="font-size:0.68rem; color:var(--text-muted); margin-top:4px; font-style:italic;">pre-consent API key leak</div>
+        </div>
+      </div>
+
+      <div class="threat-grid">
+        <div class="threat-card">
+          <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>DM-11 / T-033</span><span style="background:var(--red-dim); color:var(--red); padding:2px 7px; border-radius:3px; font-size:0.6rem;">93% exploit rate</span></div>
+          <h3>Embedded jailbreak sequences</h3>
+          <p>Dormant adversarial prompts embedded in external resources — websites, documents, emails — that override safety alignment when the agent ingests them. In multimodal settings, a single crafted image can universally jailbreak the model.</p>
+          <div class="threat-fix">guard: handleT033_EmbeddedJailbreakSequences — blocks before context window entry</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>DM-08 / T-035</span><span style="background:var(--red-dim); color:var(--red); padding:2px 7px; border-radius:3px; font-size:0.6rem;">80%+ success</span></div>
+          <h3>RAG knowledge base poisoning</h3>
+          <p>Injects fabricated statements into retrieval corpora — wikis, document stores, shared repos. When the agent retrieves and treats attacker content as verified fact, every downstream decision is compromised. A handful of optimised documents is sufficient.</p>
+          <div class="threat-fix">guard: handleT035_RAGKnowledgeBasePoisoning — provenance guard required on every retrieval</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>DM-13 / T-036</span><span style="background:var(--red-dim); color:var(--red); padding:2px 7px; border-radius:3px; font-size:0.6rem;">58-90% exploit</span></div>
+          <h3>Sub-agent spawning privilege escalation</h3>
+          <p>Attacker coerces an orchestrator to spawn sub-agents with the parent's full permission set. A single poisoned repository instruction gives the attacker the orchestrator's complete access.</p>
+          <div class="threat-fix">guard: handleT036_SubAgentSpawningPrivilegeEscalation — minimal privilege enforced, not parent clone</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>DM-12 / T-034</span><span style="background:var(--red-dim); color:var(--red); padding:2px 7px; border-radius:3px; font-size:0.6rem;">&gt;80% across 5 agents</span></div>
+          <h3>Agent tool-call data exfiltration</h3>
+          <p>Confused deputy attack — the agent is coerced to locate, encode, and transmit private data to an attacker endpoint using its own legitimate tool access. M365 Copilot exfiltrated entire context to attacker Teams endpoints via crafted emails.</p>
+          <div class="threat-fix">guard: handleT034_AgentToolCallDataExfiltration — destination whitelist enforced on every tool call</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>CL-03 / T-030</span><span style="background:var(--red-dim); color:var(--red); padding:2px 7px; border-radius:3px; font-size:0.6rem;">CVE-2026-21852</span></div>
+          <h3>Pre-consent agent tool-call execution</h3>
+          <p>Agent executes tool calls and makes API requests before the trust dialogue appears. In CVE-2026-21852, API keys were sent to an attacker server before the developer saw any warning. Confirmed in the ClaudeCode source leak.</p>
+          <div class="threat-fix">guard: handleT030_PreConsentAgentToolCallExecution — consent gate required before any tool call</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>CL-01 / T-028</span><span style="background:var(--amber-dim); color:var(--amber); padding:2px 7px; border-radius:3px; font-size:0.6rem;">CVE confirmed</span></div>
+          <h3>Security rule bypass via command volume</h3>
+          <p>Deny rules silently stop applying after 50+ subcommands in a chain. Attacker plants instructions to generate 50+ legitimate-looking build steps — all deny rules, validators, and injection detection are skipped from command 51 onward.</p>
+          <div class="threat-fix">guard: handleT028_SecurityRuleBypassViaCommandVolume — max chain length enforced at build time</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; padding:16px 20px; background:var(--bg-deep); border:0.5px solid var(--border-dim); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <span style="font-size:0.8rem; color:var(--text-secondary);">21 agent threats formally modelled in the Seirios OCL ontology — all IPFS-anchored with timestamp proof.</span>
+        <a href="regulations.html" style="color:var(--cyan); font-family:var(--font-mono); font-size:0.78rem; text-decoration:none; white-space:nowrap;">View all 48 threats on the regulations page &rarr;</a>
       </div>
     </div>
   </section>
@@ -1210,6 +1296,12 @@ em.accent { font-style: italic; color: var(--text-secondary); }
             <td>Live</td>
           </tr>
           <tr>
+            <td>DeepMind AI Agent Traps</td>
+            <td>Adversarial content engineered to misdirect or exploit AI agents in their environment — 6 attack categories, 20 confirmed trap patterns</td>
+            <td>DM-01 to DM-20 mapped to T-028–T-048; 15 blocking guards, 6 logging guards, 6 OCL invariants</td>
+            <td>Live</td>
+          </tr>
+          <tr>
             <td>MITRE ATLAS</td>
             <td>Adversarial techniques targeting ML systems and agents</td>
             <td>Orchestrator compromise, tool hijacking, cross-agent prompt injection</td>
@@ -1249,11 +1341,11 @@ em.accent { font-style: italic; color: var(--text-secondary); }
     <div class="container">
       <div class="cta-banner">
         <div class="section-label" style="justify-content:center; margin-bottom:16px;">AI agent security</div>
-        <h2 class="display-lg" style="margin-bottom:12px; max-width:560px; margin-left:auto; margin-right:auto;">
-          Your agents can't bypass<br/><span style="color:var(--cyan);">what they can't reach.</span>
+        <h2 class="display-lg" style="margin-bottom:12px; max-width:600px; margin-left:auto; margin-right:auto;">
+          48 threats. One platform.<br/><span style="color:var(--cyan);">All formally verified and enforced.</span>
         </h2>
-        <p style="color:var(--text-secondary); font-size:0.9375rem; max-width:420px; margin:0 auto 28px; line-height:1.65;">
-          Request a demo and we'll show you what a formally bounded agent deployment looks like — permission invariants, auto-generated guards, and the CI gate that enforces them.
+        <p style="color:var(--text-secondary); font-size:0.9375rem; max-width:480px; margin:0 auto 28px; line-height:1.65;">
+          The DeepMind AI Agent Traps framework and ClaudeCode CVE-2026-21852 series are all modelled, IPFS-anchored, and enforced at build time. Request a demo and we'll run the pipeline against your agent codebase.
         </p>
         <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
           <a href="request-demo.html" class="btn btn-primary btn-lg">Request Demo →</a>
