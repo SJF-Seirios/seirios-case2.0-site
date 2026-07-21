@@ -633,7 +633,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;600&family=Figtree:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Seirios — AI Agent Security · 48 Threats · DeepMind + CVE Guards</title>
-  <meta name="description" content="Seirios formally models and enforces 48 agent threats — covering OWASP Agentic Top 10, DeepMind AI Agent Traps framework, and ClaudeCode CVE-2026-21852. Code-layer guards enforced at build time. IPFS-anchored threat ontology." />
+  <meta name="description" content="Seirios formally models and enforces 48 agent threats — covering OWASP Agentic Top 10, DeepMind AI Agent Traps framework, and the Claude Code CVE-2026-21852 disclosure. Code-layer guards enforced at build time. IPFS-anchored threat ontology." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <script src="../js/theme.js"></script>
   <style>
@@ -899,7 +899,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         Most agent security tools are observability tools — they watch what the agent does and alert after the fact. Seirios is an enforcement tool — it makes certain agent behaviours structurally impossible before deployment. The same way fireproof construction is different from a smoke detector.
       </p>
       <p style="font-size:0.875rem; color:var(--text-muted); max-width:580px; line-height:1.7; margin-bottom:28px;">
-        Built on the <strong style="color:var(--text-secondary);">DeepMind AI Agent Traps framework</strong> (April 2026) and the <strong style="color:var(--text-secondary);">ClaudeCode CVE-2026-21852</strong> series — 48 threats formally modelled, 42 with code-layer guards enforced at build time.
+        Built on the <strong style="color:var(--text-secondary);">DeepMind AI Agent Traps framework</strong> (April 2026) and the <strong style="color:var(--text-secondary);">Claude Code CVE-2026-21852</strong> disclosure — 48 threats formally modelled, 42 with code-layer guards enforced at build time.
       </p>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <span class="badge badge-red" style="padding:7px 13px;">API key exposure</span>
@@ -919,7 +919,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       <div class="section-label">The agentic security problem</div>
       <h2 class="display-lg" style="margin-bottom:12px;">48 threats. One enforcement platform.</h2>
       <p style="color:var(--text-secondary); max-width:640px; font-size:0.9375rem; line-height:1.7; margin-bottom:0;">
-        The original six agentic security failures remain unsolved in most codebases. The ClaudeCode leak (CVE-2026-21852) and the DeepMind AI Agent Traps research (April 2026) added 21 more confirmed attack vectors — with exploit success rates between 58% and 93%. Seirios is the only compliance platform with formal, code-layer guards against all of them.
+        The original six agentic security failures remain unsolved in most codebases. The Claude Code CVE-2026-21852 disclosure and the DeepMind AI Agent Traps research (April 2026) added 21 more confirmed attack vectors — with exploit success rates between 58% and 93%. Seirios is the only compliance platform with formal, code-layer guards against all of them.
       </p>
 
       <div class="threat-grid">
@@ -963,13 +963,13 @@ em.accent { font-style: italic; color: var(--text-secondary); }
     </div>
   </section>
 
-  <!-- New agent threats from DeepMind + ClaudeCode research -->
+  <!-- New agent threats from DeepMind + Claude Code CVE research -->
   <section class="section" style="background:var(--bg-void);">
     <div class="container">
       <div class="section-label">April 2026 research</div>
-      <h2 class="display-lg" style="margin-bottom:12px;">The new attack surface: DeepMind AI Agent Traps + ClaudeCode CVE series</h2>
+      <h2 class="display-lg" style="margin-bottom:12px;">The new attack surface: DeepMind AI Agent Traps + Claude Code CVE</h2>
       <p style="color:var(--text-secondary); max-width:640px; font-size:0.9375rem; line-height:1.7; margin-bottom:8px;">
-        Two research publications confirmed 21 additional attack vectors specific to agentic AI systems. The <strong style="color:var(--text-primary);">Google DeepMind AI Agent Traps framework</strong> systematically catalogued adversarial content designed to exploit agents in their environment. The <strong style="color:var(--text-primary);">ClaudeCode source leak</strong> exposed CVE-2026-21852 — API keys exfiltrated before the trust dialogue appeared.
+        Two research publications confirmed 21 additional attack vectors specific to agentic AI systems. The <strong style="color:var(--text-primary);">Google DeepMind AI Agent Traps framework</strong> systematically catalogued adversarial content designed to exploit agents in their environment. The <strong style="color:var(--text-primary);">Claude Code CVE-2026-21852 disclosure</strong> — a vulnerability in the project-load flow, reported by Check Point Research — showed API keys could be exfiltrated before the trust dialogue appeared.
       </p>
       <p style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.78rem; margin-bottom:32px;">
         All 21 threats are formally modelled in the Seirios OCL threat ontology and IPFS-anchored. 15 have blocking code-layer guards (Tier A). 6 have audit logging guards (Tier B).
@@ -1026,7 +1026,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
         <div class="threat-card">
           <div class="threat-label" style="display:flex; justify-content:space-between; align-items:center;"><span>CL-03 / T-030</span><span style="background:var(--red-dim); color:var(--red); padding:2px 7px; border-radius:3px; font-size:0.6rem;">CVE-2026-21852</span></div>
           <h3>Pre-consent agent tool-call execution</h3>
-          <p>Agent executes tool calls and makes API requests before the trust dialogue appears. In CVE-2026-21852, API keys were sent to an attacker server before the developer saw any warning. Confirmed in the ClaudeCode source leak.</p>
+          <p>Agent executes tool calls and makes API requests before the trust dialogue appears. In CVE-2026-21852, API keys were sent to an attacker server before the developer saw any warning — disclosed in the Claude Code CVE-2026-21852 report.</p>
           <div class="threat-fix">guard: handleT030_PreConsentAgentToolCallExecution — consent gate required before any tool call</div>
         </div>
         <div class="threat-card">
@@ -1345,7 +1345,7 @@ em.accent { font-style: italic; color: var(--text-secondary); }
           48 threats. One platform.<br/><span style="color:var(--cyan);">All formally verified and enforced.</span>
         </h2>
         <p style="color:var(--text-secondary); font-size:0.9375rem; max-width:480px; margin:0 auto 28px; line-height:1.65;">
-          The DeepMind AI Agent Traps framework and ClaudeCode CVE-2026-21852 series are all modelled, IPFS-anchored, and enforced at build time. Request a demo and we'll run the pipeline against your agent codebase.
+          The DeepMind AI Agent Traps framework and the Claude Code CVE-2026-21852 disclosure are all modelled, IPFS-anchored, and enforced at build time. Request a demo and we'll run the pipeline against your agent codebase.
         </p>
         <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
           <a href="request-demo.html" class="btn btn-primary btn-lg">Request Demo →</a>
@@ -1387,8 +1387,10 @@ em.accent { font-style: italic; color: var(--text-secondary); }
       </div>
       <div style="height:0.5px; background:var(--border-dim); margin-bottom:14px;"></div>
       <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
-        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 Polecat Business &amp; Technology Advice B.V., KvK 61395323 · Rotterdam · Dutch law</span>
+        <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">© 2026 Seirios B.V. · Rotterdam · Dutch law</span>
         <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">info@seirios.xyz</span>
       </div>
     </div>
   </footer>
+</body>
+</html>
